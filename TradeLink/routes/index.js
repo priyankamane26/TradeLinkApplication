@@ -8,11 +8,7 @@ const path = require('path');
 
 
 const constructorMethod = (app) => {
-    app.use("/users", users);
-
-    app.get("/", function (request, response) {
-        response.render("user/loginform");
-    });
+    app.use("/", users);
 
     app.use("*", (req, res) => {
         let route = path.resolve(`static/errorPage.html`);
