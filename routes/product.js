@@ -7,7 +7,7 @@ const data = require("../data");
 const productData = data.products;
 const userData = data.users;
 const path = require('path');
-
+const passport = require("passport");
 
 router.get("/:id", function (request, response) {
     console.log("Get Method for Product details Page.")
@@ -37,6 +37,33 @@ router.get("/:id", function (request, response) {
     }); 
 });
 
+router.get("/", function (request, response) {
+    console.log("Users products");
+    console.log(request.session.passport);
+    if(request.session.passport && request.session.passport.user) {
+        let userInfo;
+        productData.getAllProducts(request.session.passport.user).then((userproducts)=>{
+            userData.getUserByID(request.session.passport.user).then((user)=>{
+                userInfo=user;
+                response.render("product/myProducts", {partial:"userlogin-scripts", products: userproducts, user: userInfo});
+            }).catch(() => {
+                response.json({ error: true, message:"user not found"});
+            });
+            //console.log(userproducts);
+            //response.json(userproducts);
+            console.log(userInfo);
+            console.log(userproducts);
 
+
+        }).catch(() => {
+            response.redirect("/");
+            //response.json({ error: true, message:"User Products not found"});
+        });
+    }
+    else {
+        response.redirect("/login");
+    }
+
+});
 
 module.exports = router;

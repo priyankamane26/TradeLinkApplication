@@ -11,8 +11,12 @@ var xss = require('xss');
 const passport = require("passport");
 
 router.get("/", function (request, response) {
-    //response.render("user/loginform");
-    response.render("mainHomeScreen", {partial:"home-scripts"});
+    console.log("session check in /");
+    console.log(request.session.passport)
+    if(request.session.passport && request.session.passport.user)
+        response.redirect("/myprofile");
+    else
+        response.render("mainHomeScreen", {partial:"home-scripts"});
 });
 
 router.get("/successfulSignup", function(request, response) {
@@ -21,7 +25,11 @@ router.get("/successfulSignup", function(request, response) {
 
 router.get("/login", function (request, response) {
     console.log("Get Method for login form.");
-    response.render("user/loginform", {partial:"userlogin-scripts", message: request.flash('message')});
+    console.log("session check in /login");
+    if(request.session.passport && request.session.passport.user)
+        response.redirect("/myprofile");
+    else
+        response.render("user/loginform", {partial:"userlogin-scripts", message: request.flash('message')});
 });
 
 router.get("/myprofile", function(request, response) {
