@@ -55,23 +55,26 @@
                 <tr>
                     <td>
                         <div class="form-group">
-                            <label for="textverify">Product images</label>
-                            <input type="file" class="form-control" id="productImage" name="productImage" value="{{productImage}}">
-                            <img style="height:50px;width:50px;float:left;" id="imageHome" src="#" alt="productimage" />
+                            <label for="email">Your Email_ID</label>
+                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your Stevens official email" value="{{email}}">
                         </div>
                     </td>
                     <td>
                         <div class="form-group">
                             <label for="status">Status</label>
-                            <input type="text" class="form-control" id="status" name="status" placeholder="E.g. Sold or not?" value="{{status}}">
+                            <select style="color:black" class="form-control" id="status" name="status">
+                                <option value="unsold" selected>Unsold</option>
+                                <option value="sold">Sold</option>
+                            </select>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div class="form-group">
-                            <label for="email">Your Email_ID</label>
-                            <input type="text" class="form-control" id="email" name="email" placeholder="Enter your Stevens official email" value="{{email}}">
+                            <label for="textverify">Product images</label>
+                            <input type="file" class="form-control" id="productImage" name="productImage" value="{{productImage}}">
+                            <img style="height:50px;width:50px;float:left;" id="imageHome" src="#" alt="productimage" />
                         </div>
                     </td>
                 </tr>

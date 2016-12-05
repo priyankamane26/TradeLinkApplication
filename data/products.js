@@ -37,12 +37,26 @@ let exportedMethods = {
     getAllProducts() {
         return products().then((productsCollection) => {
                 return productsCollection.find({},{title:1}).toArray().then((allProducts)=>{
-                    if (!allProducts) Promise.reject("Recipes not found");
+                    if (!allProducts) Promise.reject("Products not found");
         return allProducts;
-    });
-
+        });
     });
     },
+    /*
+     Parameters: user id
+     return: list of products of the user provided.
+     */
+    getAllProducts(userid) {
+        return products().then((productsCollection) => {
+            return productsCollection.find({user:userid}).toArray().then((allUserProducts)=>{
+                if (!allUserProducts) Promise.reject("User Products not found");
+                console.log(allUserProducts);
+                return allUserProducts;
+            });
+
+        });
+    },
+
 
     addProduct(requestBody,UserID) {
         console.log("addProduct===============");

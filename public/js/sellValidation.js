@@ -14,15 +14,15 @@ function validateSellForm()
             var condition = $("#condition").val();
             var purchasedYear = $("#purchasedYear").val();
             var productImage = $("#productImage").val();
-            var status = $("#status").val();
+            //var status = $("#status").val();
+            var status = $('#status :selected').text();
             var email = $("#email").val();
 
 
             var errorContainer = document.getElementById("error-container");
             var errorTextElement = errorContainer.getElementsByClassName("text-goes-here")[0];
             errorContainer.classList.add("hidden");
-            //alert(username);
-            //alert(password);
+            //console.log(status);
             //console.log(email);
             //console.log(password);
             if (!title) throw "Must provide title.";

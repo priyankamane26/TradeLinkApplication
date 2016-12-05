@@ -7,13 +7,19 @@ const data = require("../data");
 const productData = data.products;
 const userData = data.users;
 const path = require('path');
+const passport = require("passport");
 
 router.get("/sellProduct", function (request, response) {
     console.log("Get Method for sell form.")
     /* get user that has corrently logged in , this.user.id --> pass this id to userData.getUserbyId()
     * get whole user object --> get the name of the user and populate it under user name / or update product object's
     * user field to user.id */
-    response.render("product/sellForm",  {partial:"sell-scripts"});
+    console.log("session check in /sellProduct");
+    console.log(request.session.passport)
+    if(request.session.passport && request.session.passport.user)
+        response.render("product/sellForm",  {partial:"sell-scripts"});
+    else
+        response.redirect("/");
 });
 
 router.post("/sellProduct", function (request, response) {
@@ -24,15 +30,15 @@ router.post("/sellProduct", function (request, response) {
     console.log(userEmailID);
     //let UserID;//,currUser;
 
-        userData.getUserByEmail(userEmailID).then((user)=>{
+        userData.getUserByID(request.session.passport.user).then((user)=>{
             console.log("inside here #########");
             console.log(user);
             console.log("logging recently received user id");
             console.log(user._id);
-               // currUser=user;
-               // UserID=user._id;
-            //console.log(UserID);
-                return user._id;
+            //passing the logged in user's id instead of the user retrieved from the email field on sell form.
+            console.log(request.session.passport.user);
+                //return user._id;
+                return request.session.passport.user;
         }).then((userId)=>{
             productData.addProduct(request.body,userId)
             .then((product) => {
