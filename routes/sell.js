@@ -1,13 +1,14 @@
 /**
  * Created by Priyanka on 11/29/2016.
  */
-const express = require('express');
-const router = express.Router();
 const data = require("../data");
-const productData = data.products;
-const userData = data.users;
-const path = require('path');
+const express = require('express');
 const passport = require("passport");
+const path = require('path');
+const productData = data.products;
+const router = express.Router();
+const userData = data.users;
+
 
 router.get("/sellProduct", function (request, response) {
     console.log("Get Method for sell form.")
@@ -26,8 +27,8 @@ router.post("/sellProduct", function (request, response) {
     console.log("Post Method for sell form.")
     //var duplicateUserCheck = false;
     //console.log(request.body);
-    let userEmailID=request.body.email;
-    console.log(userEmailID);
+    //let userEmailID=request.body.email;
+    //console.log(userEmailID);
     //let UserID;//,currUser;
 
         userData.getUserByID(request.session.passport.user).then((user)=>{
@@ -59,8 +60,8 @@ router.post("/sellProduct", function (request, response) {
         }).catch((e)=>{
              response.json({ error: true, message:"outer error"});
         });
-        
-        
+
+
     //response.render("user/signupform",  {partial:"mainscreen-scripts"});
 });
 

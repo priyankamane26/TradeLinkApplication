@@ -1,13 +1,15 @@
 /**
  * Created by Priyanka on 11/29/2016.
  */
+const data = require("../data");
 const mongoCollections = require("../config/mongoCollections");
 const products = mongoCollections.products;
-const uuid = require('node-uuid');
-const data = require("../data");
 const userData = data.users;
+const uuid = require('node-uuid');
+
 
 let exportedMethods = {
+
     getProductByID(id) {
         console.log("inside getProductByID");
         return products().then((productsCollection) => {
@@ -17,6 +19,7 @@ let exportedMethods = {
     });
     });
     },
+
     getProductByUser(user) {
         return products().then((productsCollection) => {
                 return productsCollection.findOne({ user: user }).then((product) => {
@@ -25,6 +28,7 @@ let exportedMethods = {
     });
     });
     },
+
     getUserOfProduct(id) {
         console.log(id);
         return products().then((productsCollection) => {
@@ -34,19 +38,19 @@ let exportedMethods = {
     });
     });
     },
+
     getAllProducts() {
         return products().then((productsCollection) => {
-                return productsCollection.find({},{title:1}).toArray().then((allProducts)=>{
-                    if (!allProducts) Promise.reject("Products not found");
-        return allProducts;
+            console.log(productsCollection);
+            return productsCollection.find({}).toArray();
         });
-    });
     },
+
     /*
      Parameters: user id
      return: list of products of the user provided.
      */
-    getAllProducts(userid) {
+    getAllUserProducts(userid) {
         return products().then((productsCollection) => {
             return productsCollection.find({user:userid}).toArray().then((allUserProducts)=>{
                 if (!allUserProducts) Promise.reject("User Products not found");
@@ -56,7 +60,6 @@ let exportedMethods = {
 
         });
     },
-
 
     addProduct(requestBody,UserID) {
         console.log("addProduct===============");
@@ -99,6 +102,7 @@ let exportedMethods = {
     });
     });
     },
+
     updateProduct(id, updatedProduct) {
         if (!id || !updatedProduct || id == undefined || updatedProduct == undefined)
         {
