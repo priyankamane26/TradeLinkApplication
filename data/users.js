@@ -67,6 +67,7 @@ let exportedMethods = {
             });
         });
     },
+    
     //This method is used in the passport authentication deserializing. cb - callback
     getUserByIDPassport(id, cb) {
         console.log(id);
