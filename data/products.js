@@ -73,6 +73,22 @@ let exportedMethods = {
         });
     },
 
+    /*
+     Parameters: searchText
+     return: list of products found based on the search text provided.
+     */
+    getProductsBasedOnSearch(searchText) {
+        console.log("getProductsBasedOnSearch");
+        console.log(searchText);
+        products().ensureIndex({title:"text"});
+        return products().then((productsCollection) => {
+            return productsCollection.find( { $text: { $search: searchText } } ).toArray().then((allUserProducts)=>{
+                if (!allUserProducts) Promise.reject("User Products not found");
+                console.log( "searchText ", allUserProducts);
+                return allUserProducts;
+            });
+        });
+    },
     addProduct(requestBody,UserID) {
         console.log("addProduct===============");
         console.log(UserID);
