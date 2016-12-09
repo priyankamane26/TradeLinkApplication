@@ -54,6 +54,21 @@ function validateSignupForm()
                 console.log("Error");
                 throw errorMessage;
             }
+            // email format verification and domain verification
+            var emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(email.match(emailformat))
+            {
+                var domain = email.split("@")[1];
+                if ($.inArray(domain, ['stevens.edu']) == -1) {
+                    // InValid domain
+                    throw "Please provide a valid Stevens email.";
+                }
+            }
+            else
+            {
+                throw "Please provide a valid email format. ex. abc@stevens.edu";
+            }
+
             if(password != cnfpassword) {
                 throw "Password confirmation failed.";
             }

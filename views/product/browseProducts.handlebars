@@ -1,11 +1,36 @@
 <section>
+    <table>
+        <tr>
+            <td>
+                <label for="searchID"></label>
+                <input type="text" class="form-control" id="searchID" name="Search" placeholder="search here.."/>
+            </td>
+            <td></br>
+                <!--<button type="submit" onclick="searchProducts()" class="btn btn-default">Search</button>-->
+                <button type="submit" onclick="alert('search')" class="btn btn-default">Search</button>
+            </td>
+        </tr>
+    </table>
+
   <h1>All Products Testing</h1>
-  {{#each products}}
-    <article class="product">
-      <h2><a href="/product/{{_id}}">{{title}}</a></h2>
-      <p>Description: {{description}}</p>
-      <p>Condition: {{condition}}</p>
-      <img src="/{{productImage}}"/>
-    </article>
-  {{/each}}
+    <div style="width: 20px; height: 20px;">
+        <table>
+            <tr>
+                <td>
+                    {{#each products}}
+
+                            <h2><a href="/product/{{_id}}">{{title}}</a></h2>
+                            <p>Description: {{description}}</p>
+                            <p>Condition: {{condition}}</p>
+                            <img src="/{{productImage}}" style="width: 100px; height: 100px" alt="product"/>
+                    {{/each}}
+                </td>
+            </tr>
+        </table>
+    </div>
 </section>
+<style>
+    a {
+        color: #003050;
+    }
+</style>
