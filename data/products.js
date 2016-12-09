@@ -47,6 +47,18 @@ let exportedMethods = {
     },
 
     /*
+        parameters: userid of currently logged in user.
+        return: products which are not uploaded by current user, to display on browse products.
+     */
+    getAllProductsOtherUsers(userid) {
+        console.log("getAllProductsOtherUsers: ",userid)
+        return products().then((productsCollection) => {
+            console.log(productsCollection);
+            return productsCollection.find({user : {$ne : userid}}).toArray();
+        });
+    },
+
+    /*
      Parameters: user id
      return: list of products of the user provided.
      */

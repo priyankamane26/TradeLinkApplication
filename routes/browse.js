@@ -10,7 +10,8 @@ router.get("/", (req, res) => {
     console.log("Browsing products...");
     console.log(req.session.passport);
     if (req.session.passport && req.session.passport.user) {
-        productData.getAllProducts().then((allProducts)=>{
+        //productData.getAllProducts().then((allProducts)=>{ //This method gives currently logged in user's products in results.
+        productData.getAllProductsOtherUsers(req.session.passport.user).then((allProducts)=>{
           console.log("Returned products:");
           console.log(allProducts);
           res.render("product/browseProducts", { partial: "browse-products-scripts", products: allProducts });
