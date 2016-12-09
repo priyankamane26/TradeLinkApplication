@@ -21,6 +21,7 @@ const upload = multer({ dest: '/public/profilePictures/' });
 const uuid = require('node-uuid');
 
 
+
 // Before asking Passport to authenticate a request, the strategy used by an application must be configured.
 // Strategies, and their configuration, are supplied via the use() function.
 passport.use('login', new Strategy({
