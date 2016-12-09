@@ -2,17 +2,15 @@
  * Created by sanketh on 11/28/2016.
  */
 
-(function ($) {
 
-    var loginform = $("#loginform");
-
-    console.log("123");
-/*    loginform.submit(function (event) {
-        event.preventDefault();
-        //alert("Form submitted");
+function validateUserLoginForm()
+{
+    console.log('userlogin.js')
+    var returnresult = false;
+    jQuery(function($) {
         try {
             //console.log("Form submitted");
-            var email = $("#email").val();
+            var email = $("#username").val();
             var password = $("#password").val();
 
             var errorContainer = document.getElementById("error-container");
@@ -22,30 +20,18 @@
             //alert(password);
             console.log(email);
             console.log(password);
+            console.log(email);
             if (!email) throw "Must provide email.";
-            if (!password) throw "Must provide password.";
-            //next();
-             if (email && password) {
-                 //console.log("requestCOnfig setup");
-                 var requestConfig = {
-                 method: "POST",
-                 url: "/login",
-                 contentType: 'application/json',
-                 data: JSON.stringify({
-                     email: email,
-                     password: password
-                 })
-                 };
-
-                 $.ajax(requestConfig).then(function (responseMessage) {
-                     console.log(responseMessage);
-                     //window.open("/private", "_self");
-                 });
-             }
+            if(!password || /^\s*$/.test(password) || 0 === password.length) throw "Must provide password.";
+            //if (!password || password.length === 0) throw "Must provide password.";
+            returnresult = true;
         }catch (e) {
             var message = typeof e === "string" ? e : e.message;
             errorTextElement.textContent = e;
             errorContainer.classList.remove("hidden");
+            returnresult = false;
         }
-    });*/
-})(window.jQuery);
+    });
+
+    return returnresult;
+}
