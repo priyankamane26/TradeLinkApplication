@@ -22,7 +22,7 @@ dbConnection().then(db => {
           address: "78 Turtle Street",
           city: "Turtleville",
           state: "NJ",
-          zipCode: 01234,
+          zipCode: 11234,
           imagePath: "public/images/defaultProfilePic.jpg"
         }
         return users.addUser(requestBody);

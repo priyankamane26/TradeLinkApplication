@@ -58,7 +58,11 @@ router.get("/signup", function (request, response) {
 
 router.post("/signup", function (request, response) {
     console.log("request.file check");
-    //console.log(request.body.file);
+    console.log(request.body);
+    console.log("@@@@@@@@@@@@");
+    console.log(request.body.zipCode);
+    console.log("===========");
+    console.log(typeof request.body.zipCode);
         var requestData = request.body;
         userData.addUser(request.body)
             .then((newUser) => {

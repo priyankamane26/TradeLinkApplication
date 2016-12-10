@@ -49,7 +49,7 @@ let exportedMethods = {
                 address: requestBody.address,
                 city: requestBody.city,
                 state: requestBody.state,
-                zipcode: requestBody.zipcode,
+                zipcode: requestBody.zipCode,
                 imagePath: requestBody.image,
                 security: question,
                 answer: requestBody.securityanswer
