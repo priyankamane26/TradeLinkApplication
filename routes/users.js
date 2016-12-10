@@ -30,7 +30,6 @@ router.get("/login", function (request, response) {
     console.log("Get Method for login form.");
     console.log("session check in /login");
     if(request.session.passport && request.session.passport.user){
-        request.session.user.firstName = request.session.passport.user.firstName;
         response.redirect("/myprofile");
     }
     else
@@ -93,7 +92,7 @@ router.post("/login", function (request, response) {
 });
 
 router.get("/about", function (request, response) {
-    response.render("aboutPage", {partial:"userlogin-scripts"});
+    response.render("aboutPage", {partial:"userlogin-scripts", user:request.user});
 });
 
 router.get("/forgotpassword", function (request, response) {
