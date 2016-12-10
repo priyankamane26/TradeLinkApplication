@@ -101,6 +101,34 @@ let exportedMethods = {
                 return this.getUserByEmail(email);
             });
         });
+    },
+
+    updateAllUserDetails(requestBody) {
+        return users().then((usersCollection) => {
+            console.log(requestBody);
+            let updateUser = {
+                password: bcrypt.hashSync(requestBody.password),
+                firstName: requestBody.firstName,
+                lastName: requestBody.lastName,
+                gender: requestBody.gender,
+                phoneNumber: requestBody.phone,
+                address: requestBody.address,
+                city: requestBody.city,
+                state: requestBody.state,
+                zipcode: requestBody.zipCode,
+                security: requestBody.security,
+                answer: requestBody.answer
+            }
+            console.log("!!!!!!!!!!!!");
+            console.log(updateUser);
+            let updateCommand = {
+                $set: updateUser
+            };
+            console.log(requestBody.email);
+            return usersCollection.updateOne({ email: requestBody.email }, updateCommand).then(() => {
+                return this.getUserByEmail(requestBody.email);
+            });
+        });
     }
 }
 

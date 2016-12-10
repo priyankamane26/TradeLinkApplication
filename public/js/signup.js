@@ -94,3 +94,122 @@ function validateSignupForm()
 
     return returnresult;
 }
+
+
+// Update profile validation
+function validateUserUpdateForm()
+{
+
+    var returnresult = false;
+    var phoneValidation=/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gm;
+    jQuery(function($) {
+
+        try {
+            var email = $("#email").val();
+            var password = $("#password").val();
+            var cnfpassword = $("#cnfpassword").val();
+            var phone = $("#phoneNumber").val();
+            var lastName = $("#lastName").val();
+            var firstName = $("#firstName").val();
+            var city = $("#city").val();
+            var address = $("#address").val();
+            var state = $("#state").val();
+            var zipCode = $("#zipCode").val();
+            var gender;
+            var securityQues = $('#securityquestion :selected').text();
+            var securityAns = $('#securityanswer').val();
+            if (document.getElementById('mgender').checked) {
+                gender = document.getElementById('mgender').value;
+            }
+            else {
+                gender = document.getElementById('fgender').value;
+            }
+            var errorContainer = document.getElementById("error-container");
+            var errorTextElement = errorContainer.getElementsByClassName("text-goes-here")[0];
+            errorContainer.classList.add("hidden");
+            var errorMessage = "";
+            var errorCheck = false; //if true -> we have errors on the page.
+            if (!email) errorMessage = "Please provide the email.\n";
+            if (!password) errorMessage = errorMessage+"Please provide the password.\n";
+            if (!cnfpassword) errorMessage = errorMessage+"Please confirm password.\n";
+            if (!firstName) errorMessage = errorMessage+"Please provide the firstName.\n";
+            if (!lastName) errorMessage = errorMessage+"Please provide the lastName.\n";
+            if (!phone || phone==undefined || !phone.match(phoneValidation) || phone.length<10)
+                errorMessage = errorMessage+"Please provide a valid contact number.\n";
+            if (!address || !city || !state || !zipCode)
+                errorMessage = errorMessage+"Please provide all the address field values.\n";
+            if (password.length <8 || password.length > 15) errorMessage = errorMessage+"Please provide a Password containing atleast 8 characters and maximum of 15 characters.\n"
+
+            if(errorMessage != "") {
+                console.log("Error");
+                throw errorMessage;
+            }
+
+            // email format verification and domain verification
+            var emailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(email.match(emailformat))
+            {
+                var domain = email.split("@")[1];
+                if ($.inArray(domain, ['stevens.edu']) == -1) {
+                    // InValid domain
+                    throw "Please provide a valid Stevens email.";
+                }
+            }
+            else
+            {
+                throw "Please provide a valid email format. ex. abc@stevens.edu";
+            }
+
+            if(password != cnfpassword) {
+                throw "Password confirmation failed.";
+            }
+            var securityquestion ="";
+            if(securityQues == '1') securityquestion ="City you were born in?";
+            else securityquestion = "Mother's maiden name?";
+            if (email) {
+                //console.log("requestCOnfig setup");
+                var requestConfig = {
+                    method: "POST",
+                    url: "/updateUser",
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        email: email,
+                        password: password,
+                        firstName: firstName,
+                        lastName: lastName,
+                        gender: gender,
+                        phone: phone,
+                        address: address,
+                        city: city,
+                        state: state,
+                        zipCode: zipCode,
+                        security:securityquestion,
+                        answer: securityAns
+                    })
+                };
+
+                $.ajax(requestConfig).then(function (responseMessage) {
+                    console.log(responseMessage);
+                    if(responseMessage.error){
+                        //console.log(responseMessage.error);
+                        errorTextElement.textContent = responseMessage.message;
+                        errorContainer.classList.remove("hidden");
+                    }else if(responseMessage.success){
+                        //console.log(responseMessage.message._id);
+                        //window.location="http://localhost:3000/myprofile/"+responseMessage.message._id;
+                        window.location="http://localhost:3000/login/";
+                    }
+                });
+            }
+            returnresult = true;
+        }catch (e) {
+            var message = typeof e === "string" ? e : e.message;
+            console.log(e);
+            errorTextElement.textContent = e;
+            errorContainer.classList.remove("hidden");
+            returnresult = false;
+        }
+    });
+
+    return returnresult;
+}

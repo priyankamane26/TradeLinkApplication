@@ -109,4 +109,31 @@ router.post("/checkSecurity", function (request, response) {
     });
 });
 
+router.get("/updateProfile", function (request, response) {
+
+    if(request.session.passport && request.session.passport.user) {
+        userData.getUserByID(request.session.passport.user).then((user)=>{
+            console.log(user);
+            response.render("user/updateProfile", {partial:"mainscreen-scripts", user: user});
+        }).catch(() => {
+            response.json({ error: true, message:"User not updated!"});
+        });
+    }
+    else
+        response.redirect("/login");
+});
+
+router.post("/updateUser", function (request, response) {
+    //update user  DB
+    console.log(request.body);
+    userData.updateAllUserDetails(request.body).then((user)=>{
+        console.log("===========");
+        response.json({ success: true, message: user});
+        //response.redirect("/myprofile");
+    }).catch(() => {
+        response.json({ error: true, message:"User not updated!"});
+    });
+});
+
+
 module.exports = router;
