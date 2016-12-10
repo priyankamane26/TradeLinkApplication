@@ -4,9 +4,23 @@
         <form id="updateUserForm" onsubmit="parent.scrollTo(0, 0);return validateUserUpdateForm()" method="post" enctype="multipart/form-data">
             <table class="tableBorder">
                 <tr>
-                    <div class="form-group hidden" id="error-container">
+                    <div class="form-group hidden" id="error-container" style="padding-left: 50px;padding-right: 50px;">
                         <div class="alert alert-danger text-goes-here">
-                            {{error }}
+                            {{ error }}
+                            <div id ="fnameerror">
+                            </div>
+                            <div id ="lnameerror">
+                            </div>
+                            <div id ="emailerror">
+                            </div>
+                            <div id ="passworderror">
+                            </div>
+                            <div id ="cnfpassworderror">
+                            </div>
+                            <div id ="phoneerror">
+                            </div>
+                            <div id ="addresserror">
+                            </div>
                         </div>
                     </div>
                     {{#if error }}
@@ -42,11 +56,11 @@
                         </div>
                         <div class="form-group">
                             <label for="phoneNumber">Contact Number</label>
-                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="E.g. +1 777-777-7777" value="{{user.phoneNumber}}">
+                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="E.g. 666-666-6666" value="{{user.phoneNumber}}">
                         </div>
                     </td>
                     <td>
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <label for="gender">Gender</label>
                             <label class="radio-inline signup-form-labels">
                                 <input type="radio" id="mgender" name="gender" value="Male" checked> Male
@@ -54,7 +68,7 @@
                             <label class="radio-inline signup-form-labels">
                                 <input type="radio" id="fgender" name="gender" value="Female" > Female
                             </label>
-                        </div>
+                        </div>-->
                     </td>
                 </tr>
                 <!-- -->

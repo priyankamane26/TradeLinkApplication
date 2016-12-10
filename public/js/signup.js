@@ -148,7 +148,9 @@ function validateUserUpdateForm()
 {
 
     var returnresult = false;
-    var phoneValidation=/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gm;
+    //var phoneValidation=/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gm;
+    var phoneValidation = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
+    var zipValidation = /^\d{5}$|^\d{5}-\d{4}$/;
     jQuery(function($) {
 
         try {
@@ -165,18 +167,59 @@ function validateUserUpdateForm()
             var gender;
             var securityQues = $('#securityquestion :selected').text();
             var securityAns = $('#securityanswer').val();
-            if (document.getElementById('mgender').checked) {
-                gender = document.getElementById('mgender').value;
-            }
-            else {
-                gender = document.getElementById('fgender').value;
-            }
+
             var errorContainer = document.getElementById("error-container");
             var errorTextElement = errorContainer.getElementsByClassName("text-goes-here")[0];
             errorContainer.classList.add("hidden");
             var errorMessage = "";
             var errorCheck = false; //if true -> we have errors on the page.
-            if (!email) errorMessage = "Please provide the email.\n";
+
+            $( "#fnameerror" ).empty();
+            $( "#lnameerror" ).empty();
+            $( "#emailerror" ).empty();
+            $( "#passworderror" ).empty();
+            $( "#cnfpassworderror" ).empty();
+            $( "#phoneerror" ).empty();
+            $( "#addresserror" ).empty();
+
+            if (!firstName) {
+                errorCheck = true;
+                document.getElementById('fnameerror').innerHTML="*Please enter a firstName*";
+            }
+            if (!lastName) {
+                errorCheck = true;
+                document.getElementById('lnameerror').innerHTML="*Please provide the lastName*";
+            }
+            if (!email) {
+                errorCheck = true;
+                document.getElementById('emailerror').innerHTML="*Please provide the email. ex: abc@stevens.edu *";
+            }
+            if (!password) {
+                errorCheck = true;
+                document.getElementById('passworderror').innerHTML="*Please provide the password*";
+            }
+            if (!cnfpassword) {
+                errorCheck = true;
+                document.getElementById('cnfpassworderror').innerHTML="*Please confirm password*";
+            }
+            if (!phone || phone==undefined || !phone.match(phoneValidation) || phone.length<10) {
+                errorCheck = true;
+                document.getElementById('phoneerror').innerHTML="*Please provide a valid contact number*";
+            }
+            if (!address || !city || !state || !zipCode) {
+                errorCheck = true;
+                document.getElementById('addresserror').innerHTML="*Please provide all the address field values*";
+            }
+            else if(!zipCode.match(zipValidation)){
+                errorCheck = true;
+                document.getElementById('addresserror').innerHTML="*Zipcode invalid*";
+            }
+            if (password.length <8 || password.length > 15) {
+                errorCheck = true;
+                document.getElementById('passworderror').innerHTML="*Please provide a Password containing atleast 8 characters and maximum of 15 characters*";
+            }
+
+            /*if (!email) errorMessage = "Please provide the email.\n";
             if (!password) errorMessage = errorMessage+"Please provide the password.\n";
             if (!cnfpassword) errorMessage = errorMessage+"Please confirm password.\n";
             if (!firstName) errorMessage = errorMessage+"Please provide the firstName.\n";
@@ -190,6 +233,12 @@ function validateUserUpdateForm()
             if(errorMessage != "") {
                 console.log("Error");
                 throw errorMessage;
+            }
+*/
+            if(errorCheck) {
+                console.log("Error");
+                errorContainer.classList.remove("hidden");
+                return false;
             }
 
             // email format verification and domain verification
@@ -224,7 +273,6 @@ function validateUserUpdateForm()
                         password: password,
                         firstName: firstName,
                         lastName: lastName,
-                        gender: gender,
                         phone: phone,
                         address: address,
                         city: city,
