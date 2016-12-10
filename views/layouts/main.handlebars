@@ -31,7 +31,7 @@
     <div>
         <ul class="nav navbar-nav navbar-right">
             {{#if user}}
-            <li class="active"><a href="/login">{{user.user}}</a></li>
+            <li class="active"><a href="/login">Welcome: {{user.firstName}}</a></li>
             {{else}}
             <li class="active"><a href="/login">Login</a></li>
             {{/if}}
