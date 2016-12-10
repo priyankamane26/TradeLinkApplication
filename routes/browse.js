@@ -37,7 +37,7 @@ router.post("/search", (req, res) => {
                 console.log(searchResultProducts);
                 console.log(!searchResultProducts);
                 if(searchResultProducts.length == 0)
-                    res.render("product/browseProducts", { partial: "browse-products-scripts", message: "No results found." });
+                    res.render("product/browseProducts", { partial: "browse-products-scripts", message: "No results found." ,ser: req.user});
                 else
                     res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts,user: req.user });
             }).catch(() => {

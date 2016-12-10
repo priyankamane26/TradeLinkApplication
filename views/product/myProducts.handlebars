@@ -18,34 +18,36 @@
     </table>
     <table style="width: 40%">
         {{#each products}}
-            <tr>
-                <td style="padding-left: 80px">
-                    {{title}}
-                    {{description}}
-                    {{condition}}
-                    {{status}}
-                </td>
-                <td>
-                    <img src="/{{productImage}}"/>
-                </td>
-            </tr>
+        <div class="row">
+            <h2><a href="/products/{{_id}}">{{title}}</a></h2>
+            <div class="col-xs-6">
+                <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
+            </div>
+            <div class="col-xs-6">
+                <p>Title: {{title}}</p>
+                <p>Description: {{description}}</p>
+                <p>Condition: {{condition}}</p>
+                <span class="label label-info">{{status}}</span>
+            </div>
+        </div>
         {{/each}}
 
     </table>
 </div>
 
+{{!--
 <style>
     .outerDiv {
         display: flex;
     }
-
+    
     .innerDiv {
         flex: 1;
         padding: 1em;
         padding-left: 80px
     }
-
+    
     a {
         color: #FFFFFF;
     }
-</style>
+</style>--}}

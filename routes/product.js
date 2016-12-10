@@ -32,7 +32,7 @@ router.get("/:id", function (request, response) {
         console.log(userInfo);
         console.log(product);
 
-        response.render("product/productInfo", {partial:"userlogin-scripts", product: product, user: userInfo});
+        response.render("product/productInfo", {partial:"userlogin-scripts", product: product, user: request.user});
     }).catch(() => {
          response.json({ error: true, message:"Product not found"});
     }); 

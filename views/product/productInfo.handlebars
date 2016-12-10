@@ -1,110 +1,157 @@
 <div class="outerDiv">
- <div class="innerDiv">
-     <table>
-         {{#if product }}
-                <tr>
-                    <h3 style="color: #7CFC00;">Product</h3>
-                </tr>
-                <tr>
-                    <td><p hidden id="productId">{{ product.id }}</p></td>
-                </tr>
-                <tr>
-                    <td><h4>Title : </h4></td>
-                    <td><h4><p id="title">{{ product.title }}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Condition : </h4></td>
-                    <td><h4><p id="condition">{{product.condition}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Purchased year : </h4></td>
-                    <td><h4><p id="purchasedYear">{{ product.purchasedYear }}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Description : </h4></td>
-                    <td><h4><p id="description">{{ product.description}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Image : </h4></td>
-                    <td>
-                        <h4>
-                            <img src="/{{product.productImage}}" alt="productpic"/>
+    <div class="innerDiv">
+        <table>
+            {{#if product }}
+            <tr>
+                <h2><span class="label label-primary">{{ product.title }}</span></h2>
+            </tr>
+            <tr>
+                <td>
+                    <p hidden id="productId">{{ product.id }}</p>
+                </td>
+            </tr>
 
-                        </h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td><h4>Status : </h4></td>
-                    <td><h4><p id="status">{{ product.status}}</p></h4></td>
-                </tr>
+            <tr>
+                <td>
+                    <h4>Condition : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="condition">{{product.condition}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Purchased year : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="purchasedYear">{{ product.purchasedYear }}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Description : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="description">{{ product.description}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Status : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="status">{{ product.status}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Image : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <img src="/{{product.productImage}}" class="img-rounded" width="300" height="220" alt="productpic" />
+                    </h4>
+                </td>
+            </tr>
             {{/if}}
         </table>
+    </div>
+    <div class="innerDiv">
+        <table>
+            {{#if user }}
+            <tr>
+                <h2><span class="label label-success">Seller's Contact Information</span><h2>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Firstname : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="firstName">{{ user.firstname}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Lastname : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="lastName">{{ user.lastname}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Email : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="email">{{ user.email}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Contact No : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="phone">{{ user.phone}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Address : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="address">{{ user.address}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>City : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="city">{{ user.city}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>State : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="state">{{ user.state}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Zip Code : </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="zipCode">{{ user.zipCode}}</p>
+                    </h4>
+                </td>
+            </tr>
+            {{/if}}
+        </table>
+    </div>
 </div>
-<div class="innerDiv">
-    <table>
-         {{#if user }}
-                <tr>
-                    <h3 style="color: #7CFC00;">Seller's Contact Information</h3>
-                </tr>
-                <tr>
-                    <td><h4>Firstname : </h4></td>
-                    <td><h4><p id="firstName">{{ user.firstName}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Lastname : </h4></td>
-                    <td><h4><p id="lastName">{{ user.lastName}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Email : </h4></td>
-                    <td><h4><p id="email">{{ user.email}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Contact No : </h4></td>
-                    <td><h4><p id="phone">{{ user.phone}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Address : </h4></td>
-                    <td><h4><p id="address">{{ user.address}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>City : </h4></td>
-                    <td><h4><p id="city">{{ user.city}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>State : </h4></td>
-                    <td><h4><p id="state">{{ user.state}}</p></h4></td>
-                </tr>
-                <tr>
-                    <td><h4>Zip Code : </h4></td>
-                    <td><h4><p id="zipCode">{{ user.zipCode}}</p></h4></td>
-                </tr>
-            {{/if}}
-        </table>
-  </div>
-  </div>
-    <a href="/myprofile">Back</a>
-
-<style>
-    table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 50px 0;
-    }
-
-    td {
-        text-align: left;
-        width: 300px;
-        padding: 10px 0;
-        /*color: #1E90FF;*/
-    }
-    .outerDiv {
-        display: flex; 
-    }
-
-    .innerDiv {
-        flex: 1; 
-        padding: 1em;
-    }
-
-</style>
-
+<a href="/myprofile">Back</a>
