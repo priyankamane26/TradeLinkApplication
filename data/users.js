@@ -42,10 +42,10 @@ let exportedMethods = {
                 _id: uuid.v4(),
                 email: requestBody.email,
                 password: bcrypt.hashSync(requestBody.password),
-                firstname: requestBody.firstname,
-                lastname: requestBody.lastname,
+                firstName: requestBody.firstName,
+                lastName: requestBody.lastName,
                 gender: requestBody.gender,
-                phone: requestBody.userphone,
+                phoneNumber: requestBody.phoneNumber,
                 address: requestBody.address,
                 city: requestBody.city,
                 state: requestBody.state,
@@ -77,6 +77,7 @@ let exportedMethods = {
             });
         });
     },
+
     //This method is used in the passport authentication deserializing. cb - callback
     getUserByIDPassport(id, cb) {
         console.log(id);

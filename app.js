@@ -16,9 +16,10 @@ const data = require("./data");
 const userData = data.users;
 const session = require('express-session');
 const multer  =   require('multer');
-const upload = multer({ dest: '/public/profilePictures/' });
+const upload = multer({ dest: './public/profilePictures/' });
 //const path = require('path');
 const uuid = require('node-uuid');
+
 
 
 // Before asking Passport to authenticate a request, the strategy used by an application must be configured.
