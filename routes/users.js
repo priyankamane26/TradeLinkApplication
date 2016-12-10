@@ -8,6 +8,7 @@ const path = require('path');
 const passport = require("passport");
 const router = express.Router();
 const userData = data.users;
+const productData = data.products;
 var xss = require('xss');
 
 
@@ -50,28 +51,6 @@ router.get('/logout', function(request, response){
     response.redirect('/login');
 });
 
-/*router.get("/myprofile/:id", function (request, response) {
-    //console.log("Get Method for myprofile.")
-    //console.log(request.params);
-    //console.log(request.params.id);
-
-    userData.getUserByID(request.params.id).then((user) => {
-        //console.log("MY PROFILE");
-        //response.status(200).json({message: "Success"});
-        fs.unlink(user.imagePath);
-        console.log(fs.unlink(user.imagePath));
-        response.render("user/myprofile",{partial:"mainscreen-scripts", profile : user});
-        }, (error) => {
-            //console.log("MY PROFILE NOT exists");
-            response.status(404).json({message: "User not exists!"});
-        }), (error) => {
-        //console.log(error);
-        let route = path.resolve(`static/errorPage.html`);
-        res.status(404).sendFile(route);
-    }
-    //response.render("user/myprofile", {profile: user} ,{partial:"mainscreen-scripts"});
-});*/
-
 router.get("/signup", function (request, response) {
     //console.log("Get Method for signup form.")
     response.render("user/signupform",  {partial:"mainscreen-scripts"});
@@ -80,23 +59,6 @@ router.get("/signup", function (request, response) {
 router.post("/signup", function (request, response) {
     console.log("request.file check");
     //console.log(request.body.file);
-    /*if(request.file){
-        var tmp_path = request.file.path;
-        var imageId = uuid.v4();
-        var target_path = 'public/profilePictures/' + imageId;
-        request.body.image = target_path;
-
-        var src = fs.createReadStream(tmp_path);
-        var dest = fs.createWriteStream(target_path);
-        src.pipe(dest);
-        src.on('end', function() {console.log("Image Uploaded Successfully"); });
-        src.on('error', function(err) { response.json({error: true,message:err}); });
-    }
-    else
-    {
-        var target_path = 'public/images/defaultProfilePic.jpg';
-        request.body.image = target_path;
-    }*/
         var requestData = request.body;
         userData.addUser(request.body)
             .then((newUser) => {
@@ -121,6 +83,30 @@ router.post("/login", function (request, response) {
 
 router.get("/about", function (request, response) {
     response.render("aboutPage", {partial:"userlogin-scripts"});
+});
+
+router.get("/forgotpassword", function (request, response) {
+    response.render("user/forgotpassword", {partial:"userlogin-scripts"});
+});
+
+router.post("/forgotpassword", function (request, response) {
+    userData.getUserByEmail(request.body.username).then((user)=>{
+        console.log(user);
+        response.render("user/securityQuestion", {partial:"security-scripts", user: user});
+    }).catch(() => {
+        response.render("user/forgotpassword", {partial:"userlogin-scripts", message:"Email not registered."});
+    });
+});
+
+router.post("/checkSecurity", function (request, response) {
+    console.log(request.body.cnfpassword);
+    //update user  DB
+    userData.updateUser(request.body.cnfpassword, request.body.email).then((user)=>{
+        console.log(user);
+        response.redirect("/login");
+    }).catch(() => {
+        response.json({ error: true, message:"User not updated!"});
+    });
 });
 
 module.exports = router;

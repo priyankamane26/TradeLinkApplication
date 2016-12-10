@@ -21,7 +21,11 @@ function validateSignupForm()
             var zipcode = $("#zipcode").val();
             var verifyText = $("#textverify").val();
             var gender;
-
+            var securityQues = $('#securityquestion :selected').text();
+            var securityAns = $('#securityanswer').val();
+            console.log(securityQues);
+            console.log(securityAns);
+            console.log($('#securityquestion').val());
             if (document.getElementById('mgender').checked) {
                 gender = document.getElementById('mgender').value;
             }
@@ -74,6 +78,9 @@ function validateSignupForm()
             }
             if(verifyText != $("#codeValue").val()) {
                 throw "Verification failed. Please enter the correct code.";
+            }
+            if(!securityAns) {
+                throw "security Answer required.";
             }
             returnresult = true;
         }catch (e) {
