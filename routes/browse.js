@@ -39,9 +39,9 @@ router.post("/search", (req, res) => {
                 if(searchResultProducts.length == 0)
                     res.render("product/browseProducts", { partial: "browse-products-scripts", message: "No results found." });
                 else
-                    res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts });
+                    res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts,user: req.user });
             }).catch(() => {
-                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList,user: request.user});
+                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList,user: req.user});
                 //res.redirect("/");
             });
     }
