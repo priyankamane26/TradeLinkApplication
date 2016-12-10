@@ -7,6 +7,7 @@ function validateSignupForm()
     var returnresult = false;
     var phoneValidation = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
     var zipValidation = /^\d{5}$|^\d{5}-\d{4}$/;
+    var passwordValidation = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
     jQuery(function($) {
 
         try {
@@ -34,10 +35,15 @@ function validateSignupForm()
                 gender = document.getElementById('fgender').value;
             }
             var errorContainer = document.getElementById("error-container");
+            var errorContainer1 = document.getElementById("error-container1");
             var errorTextElement = errorContainer.getElementsByClassName("text-goes-here")[0];
+            var errorTextElement1 = errorContainer1.getElementsByClassName("text-goes-here")[0];
+            //var errorTextElement1 = errorContainer.getElementsByClassName("text-goes-here")[1];
             errorContainer.classList.add("hidden");
+            errorContainer1.classList.add("hidden");
             var errorMessage = "";
             var errorCheck = false; //if true -> we have errors on the page.
+            console.log(document);
             $( "#fnameerror" ).empty();
             $( "#lnameerror" ).empty();
             $( "#emailerror" ).empty();
@@ -45,7 +51,7 @@ function validateSignupForm()
             $( "#cnfpassworderror" ).empty();
             $( "#phoneerror" ).empty();
             $( "#addresserror" ).empty();
-
+            $("#passwordValiderror").empty();
             if (!firstName) {
                 errorCheck = true;
                 document.getElementById('fnameerror').innerHTML="*Please enter a firstName*";
@@ -73,15 +79,19 @@ function validateSignupForm()
             console.log(typeof zipCode);
             if (!address || !city || !state || !zipCode) {
                 errorCheck = true;
+                console.log("!!!");
                 document.getElementById('addresserror').innerHTML="*Please provide all the address field values*";
             }
             else if(!zipCode.match(zipValidation)){
                 errorCheck = true;
+                console.log("###");
                 document.getElementById('addresserror').innerHTML="*Zipcode invalid*";
             }
-            if (password.length <8 || password.length > 15) {
+            console.log("sdfsdfsd");
+            if (password && !password.match(passwordValidation)) {
                 errorCheck = true;
-                document.getElementById('passworderror').innerHTML="*Please provide a Password containing atleast 8 characters and maximum of 15 characters*";
+                console.log("$$$");
+                document.getElementById("passwordValiderror").innerHTML="*Please provide a Password containing at least 8 characters, 1 number, 1 upper and 1 lowercase*";
             }
 
 
@@ -102,7 +112,8 @@ function validateSignupForm()
                 //var errorlist = ["error1", "error2"];
                 //throw errorlist;
                 //throw errorMessage;
-                errorContainer.classList.remove("hidden");
+                errorContainer1.classList.remove("hidden");
+                 //errorTextElement1
                 return false;
             }
             // email format verification and domain verification
@@ -151,6 +162,7 @@ function validateUserUpdateForm()
     //var phoneValidation=/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/gm;
     var phoneValidation = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
     var zipValidation = /^\d{5}$|^\d{5}-\d{4}$/;
+    var passwordValidation = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
     jQuery(function($) {
 
         try {
@@ -171,6 +183,11 @@ function validateUserUpdateForm()
             var errorContainer = document.getElementById("error-container");
             var errorTextElement = errorContainer.getElementsByClassName("text-goes-here")[0];
             errorContainer.classList.add("hidden");
+
+            var errorContainer1 = document.getElementById("error-container1");
+            var errorTextElement1 = errorContainer1.getElementsByClassName("text-goes-here")[0];
+            errorContainer1.classList.add("hidden");
+
             var errorMessage = "";
             var errorCheck = false; //if true -> we have errors on the page.
 
@@ -214,9 +231,9 @@ function validateUserUpdateForm()
                 errorCheck = true;
                 document.getElementById('addresserror').innerHTML="*Zipcode invalid*";
             }
-            if (password.length <8 || password.length > 15) {
+            if (!password.match(passwordValidation)) {
                 errorCheck = true;
-                document.getElementById('passworderror').innerHTML="*Please provide a Password containing atleast 8 characters and maximum of 15 characters*";
+                document.getElementById('passworderror').innerHTML="*Please provide a Password containing at least 8 characters, 1 number, 1 upper and 1 lowercase*";
             }
 
             /*if (!email) errorMessage = "Please provide the email.\n";
@@ -237,7 +254,7 @@ function validateUserUpdateForm()
 */
             if(errorCheck) {
                 console.log("Error");
-                errorContainer.classList.remove("hidden");
+                errorContainer1.classList.remove("hidden");
                 return false;
             }
 
