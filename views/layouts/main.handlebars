@@ -18,11 +18,12 @@
 </head>
 
 {{!--<body style="background-color: #ffffff; color: #ffffff;">--}}
-<body style="background-color: #767676; color: #ffffff;">
+<body>
+<div>
 
 <!--<body>-->
-<header>
-    <nav class="navbar navbar-default" role="navigation">
+
+    <nav class="class=navbar navbar-default" role="navigation" style="margin-bottom: 20px">
     <div class="container-fluid">
     <div class="navbar-header">
         <a class="navbar-brand" href="/login">Trade Link</a>
@@ -52,24 +53,25 @@
     </div>
     </div>
 </nav>
-    <table>
+    {{!--<table>
         <tr>
             <td style="padding-left: 50px;">
             </td>
         </tr>
+    </table>--}}
 
-    </table>
-</header>
 <main class="container" >
     <div class="row" >
-        <div>
+        <div class = "jumbotron">
             {{{body}}}
         </div>
     </div>
 </main>
 
+
 {{> (lookup . 'partial') }}
 
 </body>
+</div>
 
 </html>
