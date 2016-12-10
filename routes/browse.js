@@ -28,29 +28,22 @@ router.get("/", (req, res) => {
 
 router.post("/search", (req, res) => {
     console.log("Browsing Search products...");
-    console.log(req.body.searchQuery);
+    //console.log(req);
+    console.log(req.body.search);
     if (req.session.passport && req.session.passport.user) {
 
-            productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
+            productData.getProductsBasedOnSearch(req.body.search).then((searchResultProducts)=>{
                 console.log("searchResultProducts:");
                 console.log(searchResultProducts);
-                res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts ,user: request.user});
+                console.log(!searchResultProducts);
+                if(searchResultProducts.length == 0)
+                    res.render("product/browseProducts", { partial: "browse-products-scripts", message: "No results found." });
+                else
+                    res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts });
             }).catch(() => {
                 res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList,user: request.user});
                 //res.redirect("/");
             });
-/*        let productList;
-        productData.getAllProductsOtherUsers(req.session.passport.user).then((allProducts)=>{
-            productList = allProducts;
-            productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
-                console.log("searchResultProducts:");
-                console.log(searchResultProducts);
-                res.render("product/browseProducts", { partial: "browse-products-scripts", products: allProducts, searchproducts: searchResultProducts });
-            })
-        }).catch(() => {
-            res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList });
-            //res.redirect("/");
-        });*/
     }
     else {
         res.redirect("/login");

@@ -56,7 +56,11 @@ router.get('/logout', function(request, response){
 
 router.get("/signup", function (request, response) {
     //console.log("Get Method for signup form.")
-    response.render("user/signupform",  {partial:"mainscreen-scripts"});
+    if(request.session.passport && request.session.passport.user)
+        response.redirect("/myprofile");
+    else
+        response.render("user/signupform",  {partial:"mainscreen-scripts"});
+
 });
 
 router.post("/signup", function (request, response) {

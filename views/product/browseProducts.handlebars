@@ -1,18 +1,35 @@
-<section>
-    <table>
-        <tr>
-            <td>
-                <label for="searchID"></label>
-                <input type="text" class="form-control" id="searchID" name="Search" placeholder="search here.."/>
-            </td>
-            <td></br>
-                <button type="submit" onclick="searchProducts()" class="btn btn-default">Search</button>
-                <!--<button type="submit" onclick="alert('search')" class="btn btn-default">Search</button>-->
-            </td>
-        </tr>
-    </table>
 
-  <h1>All Products Testing</h1>
+    <form id="searchForm" method="post" action="/browse/search">
+        <table>
+            <tr>
+                <td>
+                    <label for="searchID"></label>
+                    <input type="text" class="form-control" id="searchID" name="search" placeholder="search here.."/>
+                </td>
+                <td></br>
+                    <button type="submit" class="btn btn-default">Search</button>
+                    <!--<button type="submit" onclick="searchProducts()" class="btn btn-default">Search</button>-->
+                    <!--<button type="submit" onclick="alert('search')" class="btn btn-default">Search</button>-->
+                </td>
+            </tr>
+        </table>
+    </form>
+<div >
+    {{#each searchproducts}}
+        <h2><a href="/products/{{_id}}">{{title}}</a></h2>
+        <p>Description: {{description}}</p>
+        <p>Condition: {{condition}}</p>
+        <img src="/{{productImage}}" style="width: 100px; height: 100px" alt="product"/>
+    {{/each}} </br>
+    {{#if message}}
+        <div class="alert alert-danger" style="width: 150px;">
+            <p><strong></strong>{{message}}</p>
+        </div>
+    {{/if}}
+</div>
+    {{#if products}}
+        <h1>All Products Testing</h1>
+    {{/if}}
     <div style="width: 20px; height: 20px;">
         <table>
             <tr>
@@ -28,7 +45,7 @@
             </tr>
         </table>
     </div>
-</section>
+
 <style>
     a {
         color: #003050;
