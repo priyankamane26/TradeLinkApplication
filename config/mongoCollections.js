@@ -8,10 +8,15 @@ let getCollectionFn = (collection) => {
     return () => {
         if (!_col) {
             _col = dbConnection().then(db => {
-                return db.collection(collection);
+                db1 = db.collection(collection);
+                if(collection == "products") {
+                    console.log("============products: ");
+                    db1.createIndex({title: "text", year: "text"})
+                }
+                return db1;
+                //return db.collection(collection);
             });
         }
-
         return _col;
     }
 }
@@ -19,5 +24,5 @@ let getCollectionFn = (collection) => {
 /* Now, you can list your collections here: */
 module.exports = {
     users: getCollectionFn("users"),
-    products: getCollectionFn("products")
+    products: getCollectionFn("products"),
 };
