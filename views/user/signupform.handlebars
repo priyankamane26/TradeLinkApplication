@@ -1,12 +1,26 @@
 
 <div class="row">
     <div class="col-sm-10"><br/>
-        <form id="signupform" onsubmit="return validateSignupForm()" method="post" action="/signup" enctype="multipart/form-data">
+        <form id="signupform" onsubmit="parent.scrollTo(0, 0);return validateSignupForm()" method="post" action="/signup" enctype="multipart/form-data">
             <table class="tableBorder">
                 <tr>
-                    <div class="form-group hidden" id="error-container">
+                    <div class="form-group hidden" id="error-container" style="padding-left: 50px;padding-right: 50px;">
                         <div class="alert alert-danger text-goes-here">
                             {{ error }}
+                            <div id ="fnameerror">
+                            </div>
+                            <div id ="lnameerror">
+                            </div>
+                            <div id ="emailerror">
+                            </div>
+                            <div id ="passworderror">
+                            </div>
+                            <div id ="cnfpassworderror">
+                            </div>
+                            <div id ="phoneerror">
+                            </div>
+                            <div id ="addresserror">
+                            </div>
                         </div>
                     </div>
                     {{#if error }}
@@ -29,8 +43,8 @@
                     <td>
                             <label for="lastName">Last Name</label>
                             <div class="form-group">
-                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" value="{{lastName}}">
-                        </div>
+                                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" value="{{lastName}}">
+                            </div>
                     </td>
                 </tr>
                 <!-- -->
@@ -80,7 +94,7 @@
                     <td>
                         <div class="form-group">
                             <label for="phoneNumber">Contact Number</label>
-                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="E.g. +1 777-777-7777" value="{{phoneNumber}}">
+                            <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="E.g. 666-666-6666" value="{{phoneNumber}}">
                         </div>
                     </td>
                 </tr>
@@ -158,9 +172,9 @@
     document.getElementById("codeValue").value = verificationcode;
     document.getElementById("codeDiv").innerHTML = verificationcode;
 
-    $(document).bind("contextmenu",function(e) {
+    /*$(document).bind("contextmenu",function(e) {
         e.preventDefault();
-    });
+    });*/
 </script>
 <style>
     table {
