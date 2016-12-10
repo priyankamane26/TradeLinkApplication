@@ -82,10 +82,11 @@ let exportedMethods = {
         console.log(searchText);
         //console.log("existing indexes: ", products.getIndexes());
         //products.createIndex({title:"text"});
-        products().ensureIndex({ title: "text"});
+        //products().ensureIndex({ title: "text"});
         return products().then((productsCollection) => {//$text: { $search: searchText }
             return productsCollection.find( {$text: { $search: searchText }} ).toArray().then((allUserProducts)=>{
                 if (!allUserProducts) Promise.reject("User Products not found");
+                console.log("========================================================================");
                 console.log( "searchText ", allUserProducts);
                 return allUserProducts;
             }).catch((e) => {
