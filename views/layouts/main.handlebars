@@ -31,7 +31,7 @@
     <div>
         <ul class="nav navbar-nav navbar-right">
             {{#if user}}
-            <li class="active"><a href="/login">Welcome: {{user.firstName}}</a></li>
+            <li class="active"><a href="/myprofile">Hello: {{user.firstname}}</a></li>
             {{else}}
             <li class="active"><a href="/login">Login</a></li>
             {{/if}}
@@ -51,9 +51,6 @@
 </header>
 <main class="container" >
     <div class="row" >
-        <div>
-            <a>{{isCurrentUser}}</a>
-        </div>
         <div>
             {{{body}}}
         </div>

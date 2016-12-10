@@ -18,7 +18,7 @@ router.get("/sellProduct", function (request, response) {
     console.log("session check in /sellProduct");
     console.log(request.session.passport)
     if(request.session.passport && request.session.passport.user)
-        response.render("product/sellForm",  {partial:"sell-scripts"});
+        response.render("product/sellForm",  {user: request.user,partial:"sell-scripts"});
     else
         response.redirect("/");
 });

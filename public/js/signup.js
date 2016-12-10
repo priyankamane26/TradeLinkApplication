@@ -3,13 +3,14 @@
  */
 function validateSignupForm()
 {
-
     var returnresult = false;
     var phoneValidation = /^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/;
     var zipValidation = /^\d{5}$|^\d{5}-\d{4}$/;
     jQuery(function($) {
 
         try {
+
+           
             var email = $("#email").val();
             var password = $("#password").val();
             var cnfpassword = $("#cnfpassword").val();

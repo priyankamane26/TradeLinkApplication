@@ -11,10 +11,12 @@ router.get("/", (req, res) => {
     console.log(req.session.passport);
     if (req.session.passport && req.session.passport.user) {
         //productData.getAllProducts().then((allProducts)=>{ //This method gives currently logged in user's products in results.
-        productData.getAllProductsOtherUsers(req.session.passport.user).then((allProducts)=>{
+        productData.getAllProductsOtherUsers(req.session.passport.user._id).then((allProducts)=>{
           console.log("Returned products:");
           console.log(allProducts);
-          res.render("product/browseProducts", { partial: "browse-products-scripts", products: allProducts });
+          console.log(req.user);
+          res.render("product/browseProducts", { partial: "browse-products-scripts", user: req.user,products: allProducts});
+          
         }).catch(() => {
             res.redirect("/");
         });
@@ -32,9 +34,9 @@ router.post("/search", (req, res) => {
             productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
                 console.log("searchResultProducts:");
                 console.log(searchResultProducts);
-                res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts });
+                res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts ,user: request.user});
             }).catch(() => {
-                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList });
+                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList,user: request.user});
                 //res.redirect("/");
             });
 /*        let productList;
