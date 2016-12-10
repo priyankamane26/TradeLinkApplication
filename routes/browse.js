@@ -28,7 +28,16 @@ router.post("/search", (req, res) => {
     console.log("Browsing Search products...");
     console.log(req.body.searchQuery);
     if (req.session.passport && req.session.passport.user) {
-        let productList;
+
+            productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
+                console.log("searchResultProducts:");
+                console.log(searchResultProducts);
+                res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts });
+            }).catch(() => {
+                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList });
+                //res.redirect("/");
+            });
+/*        let productList;
         productData.getAllProductsOtherUsers(req.session.passport.user).then((allProducts)=>{
             productList = allProducts;
             productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
@@ -39,7 +48,7 @@ router.post("/search", (req, res) => {
         }).catch(() => {
             res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList });
             //res.redirect("/");
-        });
+        });*/
     }
     else {
         res.redirect("/login");

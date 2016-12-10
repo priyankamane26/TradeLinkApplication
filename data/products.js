@@ -80,12 +80,18 @@ let exportedMethods = {
     getProductsBasedOnSearch(searchText) {
         console.log("getProductsBasedOnSearch");
         console.log(searchText);
-        products().ensureIndex({title:"text"});
-        return products().then((productsCollection) => {
-            return productsCollection.find( { $text: { $search: searchText } } ).toArray().then((allUserProducts)=>{
+        //console.log("existing indexes: ", products.getIndexes());
+        //products.createIndex({title:"text"});
+        products().ensureIndex({ title: "text"});
+        return products().then((productsCollection) => {//$text: { $search: searchText }
+            return productsCollection.find( {$text: { $search: searchText }} ).toArray().then((allUserProducts)=>{
                 if (!allUserProducts) Promise.reject("User Products not found");
                 console.log( "searchText ", allUserProducts);
                 return allUserProducts;
+            }).catch((e) => {
+                console.log("error");
+                console.log(e);
+
             });
         });
     },

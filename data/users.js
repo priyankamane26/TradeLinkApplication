@@ -28,7 +28,15 @@ let exportedMethods = {
     },
     addUser(requestBody) {
         //console.log("addUser===============");
-        //console.log(requestBody);
+        var question;
+        console.log(requestBody.securityquestion);
+        console.log(typeof requestBody.securityquestion);
+        if(requestBody.securityquestion == 2) {
+            question = "Mother's maiden name?";
+        }
+        if(requestBody.securityquestion == 1) {
+            question = "City you were born in?";
+        }
         return users().then((usersCollection) => {
             let newUser = {
                 _id: uuid.v4(),
@@ -41,8 +49,10 @@ let exportedMethods = {
                 address: requestBody.address,
                 city: requestBody.city,
                 state: requestBody.state,
-                zipCode: requestBody.zipCode,
-                imagePath: requestBody.image
+                zipcode: requestBody.zipcode,
+                imagePath: requestBody.image,
+                security: question,
+                answer: requestBody.securityanswer
             };
             return usersCollection.findOne({ email: requestBody.email }).then((user) => {
                 if (user) throw "Email already exists.";
@@ -75,6 +85,20 @@ let exportedMethods = {
             return usersCollection.findOne({ _id: id }).then((user) => {
                 if (!user) cb(new Error('User ' + id + ' does not exist'));
                 return cb(null, user);
+            });
+        });
+    },
+    updateUser(password, email) {
+        return users().then((usersCollection) => {
+            let updateUser = {
+                password : bcrypt.hashSync(password)
+            }
+            let updateCommand = {
+                $set: updateUser
+            };
+
+            return usersCollection.updateOne({ email: email }, updateCommand).then(() => {
+                return this.getUserByEmail(email);
             });
         });
     }
