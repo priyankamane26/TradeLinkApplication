@@ -19,6 +19,12 @@ The primary directories are:
 - tasks: Seed script used to populate database.
 - views: Handlebars templates and HTML.
 
+# Install packages
+
+```
+npm install
+```
+
 # Seeding the database
 
 To drop the current database and populate the user and products collection with
