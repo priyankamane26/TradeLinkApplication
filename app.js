@@ -122,7 +122,7 @@ app.post("/sell/sellProduct",upload.single('productImage'),function (req, res, n
         src.on('error', function(err) { res.json({error: true,message:err}); });
     }
     else {
-        var target_path = 'public/images/defaultProfilePic.jpg';
+        var target_path = 'public/images/defaultProductPic.jpg';
         req.body.image = target_path;
     }
     next();

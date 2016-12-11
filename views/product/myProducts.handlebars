@@ -16,6 +16,7 @@
         </tr>
     </table>
 </div>
+{{#if products}}
 <div class="outerDiv">
     <div class="innerDiv">
         <table>
@@ -37,3 +38,8 @@
         </table>
     </div>
 </div>
+{{else}}
+<h4 style="padding-left: 80px">No Products to Publish.
+    Add a product 
+    <a href="/sell/sellProduct">here</a></h4>
+{{/if}}
