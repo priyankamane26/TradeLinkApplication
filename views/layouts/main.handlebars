@@ -17,44 +17,39 @@
     {{!--<script src="/public/js/helper.js"><script>--}}
 </head>
 
-{{!--<body style="background-color: #ffffff; color: #ffffff;">--}}
 <body>
 <div>
-
-<!--<body>-->
-
     <nav class="class=navbar navbar-default" role="navigation" style="margin-bottom: 20px">
-    <div class="container-fluid">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/login">Trade Link</a>
-    </div>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">Trade Link</a>
+            </div>
 
-    <div>
-        <ul class="nav navbar-nav navbar-right">
-            {{#if user}}
-            <li class="active">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
-                role="button" aria-haspopup="true" aria-expanded="true">Hello: {{user.firstname}}<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="/sell/sellProduct">Sell a Product</a></li>
-                  <li><a href="/browse">Browse Products</a></li>
-                  <li><a href="/products">My Products</a></li>
-                  <li><a href="/updateProfile">Update Profile</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li><a href="/logout">Sign out</a></li>
+            <div>
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if user}}
+                        <li class="active">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-haspopup="true" aria-expanded="true">Hello: {{user.firstName}}<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/sell/sellProduct">Sell a Product</a></li>
+                                <li><a href="/browse">Browse Products</a></li>
+                                <li><a href="/products">My Products</a></li>
+                                <li><a href="/updateProfile">Update Profile</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout">Sign out</a></li>
+                            </ul>
+                        </li>
+                    {{else}}
+                        <li class="active"><a href="/login">Login</a></li>
+                    {{/if}}
+                    <li class="active">
+                        <a href="/about">About us</a>
+                    </li>
                 </ul>
-            </li>
-            {{else}}
-            <li class="active"><a href="/login">Login</a></li>
-            {{/if}}
-            <li>
-                <a href="/about">About us</a>
-            </li>
-           
-        </ul>
-    </div>
-    </div>
-</nav>
+            </div>
+        </div>
+    </nav>
     {{!--<table>
         <tr>
             <td style="padding-left: 50px;">
@@ -62,18 +57,16 @@
         </tr>
     </table>--}}
 
-<main class="container" >
-    <div class="row" >
-        <div class = "jumbotron">
-            {{{body}}}
+    <main class="container" >
+        <div class="row" >
+            <div class = "jumbotron">
+                {{{body}}}
+            </div>
         </div>
-    </div>
-</main>
+    </main>
 
 
-{{> (lookup . 'partial') }}
-
-</body>
+    {{> (lookup . 'partial') }}
 </div>
-
+</body>
 </html>
