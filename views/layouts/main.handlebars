@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="/public/css/bootstrap.css">
     <script src="/public/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-    <!--    <link rel="stylesheet" href="/public/css/style1.css">-->
     <script src="/public/js/tota11y.js"></script>
     {{!--<script src="/public/js/helper.js"><script>--}}
 </head>
@@ -28,7 +27,7 @@
                     {{#if user}}
                         <li class="active">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
-                               role="button" aria-haspopup="true" aria-expanded="true">Hello: {{user.firstName}}<span class="caret"></span></a>
+                               role="button" aria-haspopup="true" aria-expanded="true">{{user.firstName}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="/sell/sellProduct">Sell a Product</a></li>
                                 <li><a href="/browse">Browse Products</a></li>
