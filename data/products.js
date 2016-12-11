@@ -54,7 +54,7 @@ let exportedMethods = {
         console.log("getAllProductsOtherUsers: ", userId)
         return products().then((productsCollection) => {
             console.log(productsCollection);
-            return productsCollection.find({user: {$ne: userId}}).toArray();
+            return productsCollection.find({user: {$ne: userId}}).limit(2).toArray();
         });
     },
 
