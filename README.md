@@ -18,15 +18,26 @@ The primary directories are:
 
 # Seeding the database
 
-Run "node tasks/seed.js" to drop the current database and populate the user and
-products collection with several users and products. Please note that no
-product or user profile images are included for these samples, as these images
-are stored locally but images are not maintained in source control.
+To drop the current database and populate the user and products collection with
+several users and products, execute:
+
+```
+node tasks/seed.js
+```
+
+Please note that no product or user profile images are included for these
+samples, as these images are stored locally but images are not maintained in
+source control.
 
 # Starting the application
 
-The application can be run by executing "npm start", which will then start a
-local server on port 3000.
+The application can be run by executing:
+
+```
+npm start
+```
+
+This will then start a local server on port 3000.
 
 # Logging in
 
