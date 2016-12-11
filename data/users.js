@@ -29,15 +29,16 @@ let exportedMethods = {
     addUser(requestBody) {
         //console.log("addUser===============");
         var question;
-        console.log(requestBody.securityquestion);
-        console.log(typeof requestBody.securityquestion);
-        if(requestBody.securityquestion == 2) {
+        console.log(requestBody.securityQuestion);
+        console.log(typeof requestBody.securityQuestion);
+        if(requestBody.securityQuestion == 2) {
             question = "Mother's maiden name?";
         }
-        if(requestBody.securityquestion == 1) {
+        if(requestBody.securityQuestion == 1) {
             question = "City you were born in?";
         }
         return users().then((usersCollection) => {
+            console.log(requestBody.image);
             let newUser = {
                 _id: uuid.v4(),
                 email: requestBody.email,
@@ -49,10 +50,10 @@ let exportedMethods = {
                 address: requestBody.address,
                 city: requestBody.city,
                 state: requestBody.state,
-                zipcode: requestBody.zipCode,
+                zipCode: requestBody.zipCode,
                 imagePath: requestBody.image,
                 security: question,
-                answer: requestBody.securityanswer
+                answer: requestBody.securityAnswer
             };
             return usersCollection.findOne({ email: requestBody.email }).then((user) => {
                 if (user) throw "Email already exists.";
@@ -111,11 +112,11 @@ let exportedMethods = {
                 firstName: requestBody.firstName,
                 lastName: requestBody.lastName,
                 gender: requestBody.gender,
-                phoneNumber: requestBody.phone,
+                phoneNumber: requestBody.phoneNumber,
                 address: requestBody.address,
                 city: requestBody.city,
                 state: requestBody.state,
-                zipcode: requestBody.zipCode,
+                zipCode: requestBody.zipCode,
                 security: requestBody.security,
                 answer: requestBody.answer
             }
