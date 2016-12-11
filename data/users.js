@@ -9,7 +9,6 @@ const uuid = require('node-uuid');
 
 let exportedMethods = {
     getUserByID(id) {
-        console.log(id);
         return users().then((usersCollection) => {
             return usersCollection.findOne({ _id: id }).then((user) => {
                 if (!user) throw "User not found";
@@ -18,7 +17,6 @@ let exportedMethods = {
         });
     },
     getUserByEmail(email) {
-        console.log(email);
         return users().then((usersCollection) => {
             return usersCollection.findOne({ email: email }).then((user) => {
                 if (!user) throw "User not found";
@@ -27,10 +25,7 @@ let exportedMethods = {
         });
     },
     addUser(requestBody) {
-        //console.log("addUser===============");
         var question;
-        console.log(requestBody.securityQuestion);
-        console.log(typeof requestBody.securityQuestion);
         if(requestBody.securityQuestion == 2) {
             question = "Mother's maiden name?";
         }
@@ -38,7 +33,6 @@ let exportedMethods = {
             question = "City you were born in?";
         }
         return users().then((usersCollection) => {
-            //console.log(requestBody.image);
             let newUser = {
                 _id: uuid.v4(),
                 email: requestBody.email,
@@ -72,7 +66,6 @@ let exportedMethods = {
     getUserByEmailPassport(email, cb) {
         return users().then((usersCollection) => {
             return usersCollection.findOne({ email: email }).then((user) => {
-                //console.log("sadsjdks");
                 if (!user) return cb(null, null);;
                 return cb(null, user);;
             });
@@ -81,7 +74,6 @@ let exportedMethods = {
 
     //This method is used in the passport authentication deserializing. cb - callback
     getUserByIDPassport(id, cb) {
-        console.log(id);
         return users().then((usersCollection) => {
             return usersCollection.findOne({ _id: id }).then((user) => {
                 if (!user) cb(new Error('User ' + id + ' does not exist'));
@@ -89,6 +81,7 @@ let exportedMethods = {
             });
         });
     },
+
     updateUser(password, email) {
         return users().then((usersCollection) => {
             let updateUser = {
@@ -106,7 +99,6 @@ let exportedMethods = {
 
     updateAllUserDetails(requestBody) {
         return users().then((usersCollection) => {
-            //console.log(requestBody);
             let updateUser = {
                 password: bcrypt.hashSync(requestBody.password),
                 firstName: requestBody.firstName,
@@ -120,17 +112,29 @@ let exportedMethods = {
                 security: requestBody.security,
                 answer: requestBody.answer
             }
-            //console.log("!!!!!!!!!!!!");
-            //console.log(updateUser);
             let updateCommand = {
                 $set: updateUser
             };
-            //console.log(requestBody.email);
             return usersCollection.updateOne({ email: requestBody.email }, updateCommand).then(() => {
                 return this.getUserByEmail(requestBody.email);
             });
         });
+    },
+
+    updateUserPic(requestBody) {
+        return users().then((usersCollection) => {
+            let updateUser = {
+                imagePath: requestBody.image
+            }
+            let updateCommand = {
+                $set: updateUser
+            };
+            return usersCollection.updateOne({ _id: requestBody.userid }, updateCommand).then(() => {
+                return this.getUserByID(requestBody.userid);
+            });
+        });
     }
+
 }
 
 module.exports = exportedMethods;
