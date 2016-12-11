@@ -106,6 +106,30 @@ app.post("/signup",upload.single('userPic'),function (req, res, next){
     next();
 });
 
+app.post("/updateUserProfilePic",upload.single('userPic'),function (req, res, next){
+    console.log("req.file");
+    console.log(req.file);
+    if(req.file){
+        var tmp_path = req.file.path;
+        var imageId = uuid.v4();
+        var target_path = 'public/profilePictures/' + imageId;
+        req.body.image = target_path;
+
+        var src = fs.createReadStream(tmp_path);
+        var dest = fs.createWriteStream(target_path);
+        src.pipe(dest);
+        src.on('end', function() {console.log("File Uploaded Successfully"); });
+        src.on('error', function(err) { res.json({error: true,message:err}); });
+    }
+    else {
+        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+        var target_path = 'public/images/defaultProfilePic.jpg';
+        req.body.image = target_path;
+    }
+    console.log(req.body.image);
+    next();
+});
+
 
 app.post("/products/editProduct",upload.single('productImage'),function (req, res, next){
     console.log("product request");

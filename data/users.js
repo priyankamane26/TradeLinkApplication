@@ -130,7 +130,24 @@ let exportedMethods = {
                 return this.getUserByEmail(requestBody.email);
             });
         });
+    },
+
+    updateUserPic(requestBody) {
+        return users().then((usersCollection) => {
+            console.log("UPDATE IMAGE");
+            let updateUser = {
+                imagePath: requestBody.image
+            }
+            let updateCommand = {
+                $set: updateUser
+            };
+            console.log(requestBody.userid);
+            return usersCollection.updateOne({ _id: requestBody.userid }, updateCommand).then(() => {
+                return this.getUserByID(requestBody.userid);
+            });
+        });
     }
+
 }
 
 module.exports = exportedMethods;
