@@ -1,118 +1,61 @@
-# webProgramming
+# TradeLink
 
-## Todo List
+TradeLink is a web application that allows Stevens members to buy and sell
+items through an exclusive marketplace with other Stevens members.
 
-------
-Routes/ Pages
-----
-### /main 
-	1. {{{body}}} handlebar
-	2. header top right "sign-out" button. (this would be displayed on each page)
-	
-### /home 
-	The first page of our application 
-	1. Login form section with two input fields "username" and "Password", submit button
-	2. a link to /sign_up page
-	3. footer -- > "around the web" --> includes links to fb page/twitter account/git/ email us link
-	4. about --> little description
-	
-### /sign_up
-	sign_up form with following fields
-	1. Firstname
-	2. Last name
-	3. Email address --> this would be stevens email id --> can use as an username
-	4. Password
-		show Tip: Use uppercase, lowercase and numbers for stronger password.
-	5. contact info (phone number, address)
-  6. Upon submit automatically redirect to /profile page  
+# Code structure
 
+The primary directories are:
 
-### /profile
-	1. Display User's name
-	2. div section --"My Products"-- to display his latest uploaded products (/getProducts)
-	3. div section -- Buy and sell buttons
-	4. div section to update profile info - contact details and password.
-	
-### /sell
-	1. form for filling product information.
-	2. upon submit automatically redirect to individual /productInfo page.
-	3. Update "Status" field to "Sold"nce bought by buyer. 
-	
-### /productInfo
-	1. This page displays single product details/info
-	2. Owner's contact details who owns the product
-	
-### /buy
-	1. search box form
-	2. upon submit, display the search results on the same page using ajax
-	3. each row in this result set would be a link to the /productInfo page
+- config: MongoDB connectors.
+- data: Data modules for products and users, including backend API functionality.
+- node_modules: Required node modules.
+- public: CSS, JS, and product and profile images.
+- routes: Login, user, and product route definitions.
+- static: Error page (404).
+- tasks: Seed script used to populate database.
+- views: Handlebars templates and HTML.
 
+# Seeding the database
 
-------
-Database model
-------
+Run "node tasks/seed.js" to drop the current database and populate the user and
+products collection with several users and products. Please note that no
+product or user profile images are included for these samples, as these images
+are stored locally but images are not maintained in source control.
 
-```json
-{"_id": "692778ba-95a2-4c79-a51b-61a7660e93f5",
-"Firstname": "John",
-"Lastname": "Doe",
-"Email": "jdoe@stevens.edu",
-"Password": "johnny123",
-"Phone": "6313256879",
-"Address": "10 Westside avenue",
-"City": "Hoboken",
-"State": "NJ",
-"Zip": "07030",
-"Profilepicture":"/public/images/user/profilePic.jpg"}
-```
+# Starting the application
 
-```json
-{"_id": "31576435-124b-4131-b184-a63aec4ded70",
-"User": "692778ba-95a2-4c79-a51b-61a7660e93f5",
-"Title": "Dell Inspiron 15-7574",
-"Description": "RAM: 4gb, Intel Core i3, 1TB Hard Drive",
-"Condition": "Used",
-"PurchasedYear": "2015",
-"ProductImage": "/public/images/product/dellproduct.jpg",
-"Status": "Unsold"}
+The application can be run by executing "npm start", which will then start a
+local server on port 3000.
 
-```
+# Logging in
 
+You can use an email/password combination defined in tasks/seed.js to log in,
+or sign up with a new user (especially if you want to test uploading a profile
+picture) and then log in.
 
-------
-Functions
-------
+If you forgot your password, you will need to enter your email and then respond
+to the security question/answer pair correctly to rest your password.
 
-Products data model:
-```javascript
-getProduct()
-```
+# Navbar
 
-```javascript
-deleteProduct()
-```
+The navbar has a link to all routes, including logging out, in the dropdown
+menu on the right. The About page is also accessible in the navbar.
 
-```javascript
-updateProduct()
-```
+# User profile
 
-```javascript
-getAllProducts()
-```
+The /updateProfile route can be used to edit your user information. Please be
+sure to enter the same or a new password when making changes.
 
+# Products
 
-User data model:
+There are several routes related to managing and viewing products:
 
-```javascript
-getUser()
-```
-
-```javascript
-updateUser()
-```
-
-```javascript
-deleteUser() // not sure about this
-```
-
--------
+- /sell/sellProduct: List a new product for sale, including any relevant
+details such as description and condition. Product image is optional.
+- /browse: Browse all other users' products (your products will not show up in
+this view). The search box supports search against title, year, price, and
+description. Partial word matches are not yet supported.
+- /products/:productId: View a specific product's information. If this is
+another users' product, their contact information will be shown. If this is
+your product, the option to Edit or Delete the listing will be available.
