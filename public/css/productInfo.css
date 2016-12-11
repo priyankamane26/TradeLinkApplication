@@ -26,3 +26,7 @@ text-decoration: none;
 .updateProductOption {
 padding-top: 80px;
 }
+
+p.hide {
+    display: none;
+}
