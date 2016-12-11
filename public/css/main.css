@@ -4,12 +4,13 @@ body {
     font-size: 15pt;
 }
 
+
 main {
     max-width: 75%;
     margin: auto;
 }
 
-header {
+/*header {
     border-bottom: 1px solid #AFAFAF;
 }
 
@@ -45,7 +46,7 @@ h6 {
 p {
     font-size: 1rem;
     line-height: 2;
-}
+}*/
 
 .post {
     width: 75%;

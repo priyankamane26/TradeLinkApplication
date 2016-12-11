@@ -18,11 +18,12 @@
 </head>
 
 {{!--<body style="background-color: #ffffff; color: #ffffff;">--}}
-<body style="background-color: #767676; color: #ffffff;">
+<body>
+<div>
 
 <!--<body>-->
-<header>
-    <nav class="navbar navbar-default" role="navigation">
+
+    <nav class="class=navbar navbar-default" role="navigation" style="margin-bottom: 20px">
     <div class="container-fluid">
     <div class="navbar-header">
         <a class="navbar-brand" href="/login">Trade Link</a>
@@ -31,35 +32,48 @@
     <div>
         <ul class="nav navbar-nav navbar-right">
             {{#if user}}
-            <li class="active"><a href="/login">Welcome: {{user.firstName}}</a></li>
+            <li class="active">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" 
+                role="button" aria-haspopup="true" aria-expanded="true">Hello: {{user.firstName}}<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/sell/sellProduct">Sell a Product</a></li>
+                  <li><a href="/browse">Browse Products</a></li>
+                  <li><a href="/products">My Products</a></li>
+                  <li><a href="/updateProfile">Update Profile</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="/logout">Sign out</a></li>
+                </ul>
+            </li>
             {{else}}
             <li class="active"><a href="/login">Login</a></li>
             {{/if}}
-            <li><a href="/about">About us</a></li>
+            <li>
+                <a href="/about">About us</a>
+            </li>
            
         </ul>
     </div>
     </div>
 </nav>
-    <table>
+    {{!--<table>
         <tr>
             <td style="padding-left: 50px;">
             </td>
         </tr>
+    </table>--}}
 
-    </table>
-</header>
 <main class="container" >
     <div class="row" >
-        <div>
-            <a>{{isCurrentUser}}</a>
-        </div>
-        <div>
+        <div class = "jumbotron">
             {{{body}}}
         </div>
     </div>
 </main>
+
+
 {{> (lookup . 'partial') }}
+
 </body>
+</div>
 
 </html>

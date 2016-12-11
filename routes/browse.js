@@ -14,7 +14,9 @@ router.get("/", (req, res) => {
         productData.getAllProductsOtherUsers(req.session.passport.user).then((allProducts)=>{
           console.log("Returned products:");
           console.log(allProducts);
-          res.render("product/browseProducts", { partial: "browse-products-scripts", products: allProducts });
+          console.log(req.user);
+          res.render("product/browseProducts", { partial: "browse-products-scripts", user: req.user, products: allProducts });
+
         }).catch(() => {
             res.redirect("/");
         });
@@ -26,29 +28,22 @@ router.get("/", (req, res) => {
 
 router.post("/search", (req, res) => {
     console.log("Browsing Search products...");
-    console.log(req.body.searchQuery);
+    //console.log(req);
+    console.log(req.body.search);
     if (req.session.passport && req.session.passport.user) {
 
-            productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
+            productData.getProductsBasedOnSearch(req.body.search).then((searchResultProducts)=>{
                 console.log("searchResultProducts:");
                 console.log(searchResultProducts);
-                res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts });
+                console.log(!searchResultProducts);
+                if(searchResultProducts.length == 0)
+                    res.render("product/browseProducts", { partial: "browse-products-scripts", message: "No results found." ,ser: req.user});
+                else
+                    res.render("product/browseProducts", { partial: "browse-products-scripts", searchproducts: searchResultProducts,user: req.user });
             }).catch(() => {
-                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList });
+                res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList,user: req.user});
                 //res.redirect("/");
             });
-/*        let productList;
-        productData.getAllProductsOtherUsers(req.session.passport.user).then((allProducts)=>{
-            productList = allProducts;
-            productData.getProductsBasedOnSearch(req.body.searchQuery).then((searchResultProducts)=>{
-                console.log("searchResultProducts:");
-                console.log(searchResultProducts);
-                res.render("product/browseProducts", { partial: "browse-products-scripts", products: allProducts, searchproducts: searchResultProducts });
-            })
-        }).catch(() => {
-            res.render("product/browseProducts", { partial: "browse-products-scripts", products: productList });
-            //res.redirect("/");
-        });*/
     }
     else {
         res.redirect("/login");

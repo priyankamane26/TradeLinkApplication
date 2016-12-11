@@ -49,6 +49,7 @@ passport.use('login', new Strategy({
                     return done(null, false,
                         req.flash('message', 'Invalid Password'));
                 }
+                req.session.user = user;
                 // User and password both match, return user from
                 // done method which will be treated like success
                 return done(null, user);

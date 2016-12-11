@@ -14,9 +14,10 @@ var xss = require('xss');
 
 router.get("/", function (request, response) {
     console.log("session check in /");
-    console.log(request.session.passport)
-    if(request.session.passport && request.session.passport.user)
+    console.log(request.session.passport);
+    if(request.session.passport && request.session.passport.user){
         response.redirect("/myprofile");
+    }
     else
         response.render("mainHomeScreen", {partial:"home-scripts"});
 });
@@ -28,8 +29,9 @@ router.get("/successfulSignup", function(request, response) {
 router.get("/login", function (request, response) {
     console.log("Get Method for login form.");
     console.log("session check in /login");
-    if(request.session.passport && request.session.passport.user)
+    if(request.session.passport && request.session.passport.user){
         response.redirect("/myprofile");
+    }
     else
         response.render("user/loginform", {partial:"userlogin-scripts", message: request.flash('message')});
 });
@@ -53,7 +55,11 @@ router.get('/logout', function(request, response){
 
 router.get("/signup", function (request, response) {
     //console.log("Get Method for signup form.")
-    response.render("user/signupform",  {partial:"mainscreen-scripts"});
+    if(request.session.passport && request.session.passport.user)
+        response.redirect("/myprofile");
+    else
+        response.render("user/signupform",  {partial:"mainscreen-scripts"});
+
 });
 
 router.post("/signup", function (request, response) {
@@ -86,7 +92,7 @@ router.post("/login", function (request, response) {
 });
 
 router.get("/about", function (request, response) {
-    response.render("aboutPage", {partial:"userlogin-scripts"});
+    response.render("aboutPage", {partial:"userlogin-scripts", user:request.user});
 });
 
 router.get("/forgotpassword", function (request, response) {

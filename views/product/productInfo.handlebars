@@ -1,4 +1,5 @@
 <div class="outerDiv">
+
  <div class="innerDiv">
      <table>
          {{#if product }}
@@ -29,16 +30,59 @@
                     <td>
                         <h4>
                             <img src="/{{product.productImage}}" alt="productpic" style="width: 200px; height: 200px"/>
-
-                        </h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td><h4>Status : </h4></td>
-                    <td><h4><p id="status">{{ product.status}}</p></h4></td>
-                </tr>
+            <tr>
+                <td>
+                    <h4>Condition: </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="condition">{{product.condition}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Purchased year: </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="purchasedYear">{{ product.purchasedYear }}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Description: </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="description">{{ product.description}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Status: </h4>
+                </td>
+                <td>
+                    <h4>
+                        <p id="status">{{ product.status}}</p>
+                    </h4>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>Image: </h4>
+                </td>
+                <td>
+                    <h4>
+                        <img src="/{{product.productImage}}" class="img-rounded" width="300" height="220" alt="productpic" />
+                    </h4>
+                </td>
+            </tr>
             {{/if}}
         </table>
+
 </div>
 
  {{#if currUser}}		

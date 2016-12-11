@@ -1,0 +1,18 @@
+table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+.tableBorder {
+    border-spacing: 50px 0 !important;
+}
+
+td {
+    width: 300px;
+    padding: 10px 0;
+}
+
+/*th {
+    text-align: center;
+    color: #FFD700;
+}*/

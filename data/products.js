@@ -50,11 +50,11 @@ let exportedMethods = {
         parameters: userid of currently logged in user.
         return: products which are not uploaded by current user, to display on browse products.
      */
-    getAllProductsOtherUsers(userid) {
-        console.log("getAllProductsOtherUsers: ",userid)
+    getAllProductsOtherUsers(userId) {
+        console.log("getAllProductsOtherUsers: ", userId)
         return products().then((productsCollection) => {
             console.log(productsCollection);
-            return productsCollection.find({user : {$ne : userid}}).toArray();
+            return productsCollection.find({user: {$ne: userId}}).toArray();
         });
     },
 
@@ -82,10 +82,11 @@ let exportedMethods = {
         console.log(searchText);
         //console.log("existing indexes: ", products.getIndexes());
         //products.createIndex({title:"text"});
-        products().ensureIndex({ title: "text"});
+        //products().ensureIndex({ title: "text"});
         return products().then((productsCollection) => {//$text: { $search: searchText }
             return productsCollection.find( {$text: { $search: searchText }} ).toArray().then((allUserProducts)=>{
                 if (!allUserProducts) Promise.reject("User Products not found");
+                console.log("========================================================================");
                 console.log( "searchText ", allUserProducts);
                 return allUserProducts;
             }).catch((e) => {

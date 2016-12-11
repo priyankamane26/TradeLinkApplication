@@ -20,47 +20,21 @@
     <div class="innerDiv">
         <table>
         {{#each products}}
-        <tr>
-            <td><h3><ul><li><a href="/products/{{_id}}">{{title}}</li></ul></a></h3></td>  
-        </tr>
-        <tr>
-            <td style="padding-left: 80px;">{{description}}</td>
-        </tr>
-        <tr> 
-             <td style="padding-left: 80px;">
-                 <div class="innerDiv">
-                    <img src="/{{productImage}}" style="width: 200px; height: 200px"/>
-                </div>
-            </td>      
-           
-        </tr>
+
+        <div class="row">
+            <h2><a href="/products/{{_id}}">{{title}}</a></h2>
+            <div class="col-xs-6">
+                <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
+            </div>
+            <div class="col-xs-6">
+                <p>Title: {{title}}</p>
+                <p>Description: {{description}}</p>
+               
+                <span class="label label-info">{{status}}</span>
+            </div>
+        </div>
+
         {{/each}}
         </table>
     </div>
 </div>
-
-
-<style>
-    .headerDiv + .outerDiv
-    {
-        margin-top:40px;
-    }
-
-
-    .outerDiv {
-        display: flex;
-        width: 100px;
-        align-items: center; 
-    }
-
-    .innerDiv {
-        flex: 1;
-        padding: 1em;
-        padding-left: 200px
-    }
-
-    a {
-        color: #FFFFFF;
-    }
-    
-</style>

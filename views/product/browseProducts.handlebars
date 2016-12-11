@@ -1,36 +1,59 @@
-<section>
-    <table>
-        <tr>
-            <td>
-                <label for="searchID"></label>
-                <input type="text" class="form-control" id="searchID" name="Search" placeholder="search here.."/>
-            </td>
-            <td></br>
-                <button type="submit" onclick="searchProducts()" class="btn btn-default">Search</button>
-                <!--<button type="submit" onclick="alert('search')" class="btn btn-default">Search</button>-->
-            </td>
-        </tr>
-    </table>
-
-  <h1>All Products Testing</h1>
-    <div style="width: 20px; height: 20px;">
+<div>
+    <form id="searchForm" method="post" action="/browse/search">
         <table>
             <tr>
                 <td>
-                    {{#each products}}
-
-                            <h2><a href="/products/{{_id}}">{{title}}</a></h2>
-                            <p>Description: {{description}}</p>
-                            <p>Condition: {{condition}}</p>
-                            <img src="/{{productImage}}" style="width: 100px; height: 100px" alt="product"/>
-                    {{/each}}
+                    <label for="searchID"></label>
+                    <input type="text" class="form-control" id="searchID" name="search" placeholder="search here.." />
+                </td>
+                <td>
+                    </br>
+                    <button type="submit" class="btn btn-default">Search</button>
+                    <!--<button type="submit" onclick="searchProducts()" class="btn btn-default">Search</button>-->
+                    <!--<button type="submit" onclick="alert('search')" class="btn btn-default">Search</button>-->
                 </td>
             </tr>
         </table>
+    </form>
+    <div>
+        {{#each searchproducts}}
+        <div class="row">
+            <h2><a href="/products/{{_id}}">{{title}}</a></h2>
+            <div class="col-xs-4">
+                <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
+            </div>
+            <div class="col-xs-6">
+                <p>Description: {{description}}</p>
+                <p>Condition: {{condition}}</p>
+            </div>
+        </div>
+        {{/each}} </br>
+        {{#if message}}
+        <div class="alert alert-danger" style="width: 150px;">
+            <p><strong></strong>{{message}}</p>
+        </div>
+        {{/if}}
     </div>
-</section>
-<style>
-    a {
-        color: #003050;
-    }
-</style>
+    {{#if products}}
+    <h1>All Products Testing</h1>
+    {{/if}}
+
+    <table>
+        <tr>
+            <td>
+                {{#each products}}
+                <div class="row">
+                    <h2><a href="/products/{{_id}}">{{title}}</a></h2>
+                    <div class="col-xs-6">
+                        <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
+                    </div>
+                    <div class="col-xs-6">
+                        <p>Description: {{description}}</p>
+                        <p>Condition: {{condition}}</p>
+                    </div>
+                </div>
+                {{/each}}
+            </td>
+        </tr>
+    </table>
+</div>

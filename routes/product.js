@@ -26,19 +26,21 @@ router.get("/:id", function (request, response) {
         userData.getUserByID(UserID).then((user)=>{
             userInfo=user;
 
+
             let currUser=false;
             if(userInfo._id == currUserID){
                 currUser=true;
                 console.log(currUser);
             }
             response.render("product/productInfo", {partial:"product-scripts", product: product, productUser: userInfo, currUser: currUser});
+
         }).catch(() => {
-         response.json({ error: true, message:"user not found"});
+         response.json({ error: true, message: "User not found" });
         });
   
     }).catch(() => {
-         response.json({ error: true, message:"Product not found 1"});
-    }); 
+         response.json({ error: true, message: "Product not found" });
+   }); 
      }
       else {
         response.redirect("/login");
