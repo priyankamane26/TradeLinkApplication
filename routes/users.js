@@ -64,11 +64,7 @@ router.get("/signup", function (request, response) {
 
 router.post("/signup", function (request, response) {
     console.log("request.file check");
-    console.log(request.body);
-    console.log("@@@@@@@@@@@@");
-    console.log(request.body.zipCode);
-    console.log("===========");
-    console.log(typeof request.body.zipCode);
+    //console.log(request.body);
         var requestData = request.body;
         userData.addUser(request.body)
             .then((newUser) => {
@@ -101,7 +97,7 @@ router.get("/forgotpassword", function (request, response) {
 
 router.post("/forgotpassword", function (request, response) {
     userData.getUserByEmail(request.body.username).then((user)=>{
-        console.log(user);
+        //console.log(user);
         response.render("user/securityQuestion", {partial:"security-scripts", user: user});
     }).catch(() => {
         response.render("user/forgotpassword", {partial:"userlogin-scripts", message:"Email not registered."});
@@ -109,10 +105,10 @@ router.post("/forgotpassword", function (request, response) {
 });
 
 router.post("/checkSecurity", function (request, response) {
-    console.log(request.body.cnfpassword);
+    //console.log(request.body.cnfpassword);
     //update user  DB
     userData.updateUser(request.body.cnfpassword, request.body.email).then((user)=>{
-        console.log(user);
+        //console.log(user);
         response.redirect("/login");
     }).catch(() => {
         response.json({ error: true, message:"User not updated!"});
@@ -123,7 +119,7 @@ router.get("/updateProfile", function (request, response) {
 
     if(request.session.passport && request.session.passport.user) {
         userData.getUserByID(request.session.passport.user).then((user)=>{
-            console.log(user);
+            //console.log(user);
             response.render("user/updateProfile", {partial:"mainscreen-scripts", user: user});
         }).catch(() => {
             response.json({ error: true, message:"User not updated!"});
@@ -135,7 +131,7 @@ router.get("/updateProfile", function (request, response) {
 
 router.post("/updateUser", function (request, response) {
     //update user  DB
-    console.log(request.body);
+    //console.log(request.body);
     userData.updateAllUserDetails(request.body).then((user)=>{
         console.log("===========");
         response.json({ success: true, message: user});

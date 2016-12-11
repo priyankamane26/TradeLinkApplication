@@ -41,7 +41,7 @@ let exportedMethods = {
 
     getAllProducts() {
         return products().then((productsCollection) => {
-            console.log(productsCollection);
+            //console.log(productsCollection);
             return productsCollection.find({}).toArray();
         });
     },
@@ -53,7 +53,7 @@ let exportedMethods = {
     getAllProductsOtherUsers(userId) {
         console.log("getAllProductsOtherUsers: ", userId)
         return products().then((productsCollection) => {
-            console.log(productsCollection);
+            //console.log(productsCollection);
             return productsCollection.find({user: {$ne: userId}}).limit(2).toArray();
         });
     },
@@ -66,7 +66,7 @@ let exportedMethods = {
         return products().then((productsCollection) => {
             return productsCollection.find({user:userid}).toArray().then((allUserProducts)=>{
                 if (!allUserProducts) Promise.reject("User Products not found");
-                console.log(allUserProducts);
+                //console.log(allUserProducts);
                 return allUserProducts;
             });
 
@@ -86,11 +86,11 @@ let exportedMethods = {
         return products().then((productsCollection) => {//$text: { $search: searchText }
             return productsCollection.find( {$text: { $search: searchText }} ).toArray().then((allUserProducts)=>{
                 if (!allUserProducts) Promise.reject("User Products not found");
-                console.log("========================================================================");
-                console.log( "searchText ", allUserProducts);
+                //console.log("========================================================================");
+                //console.log( "searchText ", allUserProducts);
                 return allUserProducts;
             }).catch((e) => {
-                console.log("error");
+                console.log("error in getProductsBasedOnSearch");
                 console.log(e);
 
             });
@@ -99,7 +99,7 @@ let exportedMethods = {
     addProduct(requestBody,UserID) {
         console.log("addProduct===============");
         console.log(UserID);
-        console.log(requestBody);
+       // console.log(requestBody);
 
         return products().then((productsCollection) => {
             console.log("***********");
@@ -115,7 +115,7 @@ let exportedMethods = {
                     status: requestBody.status
                 };
         console.log("newly created product");
-        console.log(newProduct);
+        //console.log(newProduct);
         return productsCollection.insertOne(newProduct).then((newProductInformation) => {
                 return newProductInformation.insertedId;
     }).then((newId) => {
@@ -185,8 +185,8 @@ let exportedMethods = {
         let updateCommand = {
             $set: updatedProdcutData
         };
-        console.log("======");
-        console.log(updatedProdcutData);
+        //console.log("======");
+        //console.log(updatedProdcutData);
         return productsCollection.updateOne({ _id: id }, updateCommand).then(() => {
                 return this.getProductByID(id);
     }).catch((err)=>{

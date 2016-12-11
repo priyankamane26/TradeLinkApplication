@@ -32,10 +32,10 @@ router.post("/sellProduct", function (request, response) {
     //let UserID;//,currUser;
 
         userData.getUserByID(request.session.passport.user).then((user)=>{
-            console.log("inside here #########");
-            console.log(user);
+            //console.log("inside here #########");
+            //console.log(user);
             console.log("logging recently received user id");
-            console.log(user._id);
+            //console.log(user._id);
             //passing the logged in user's id instead of the user retrieved from the email field on sell form.
             console.log(request.session.passport.user);
                 //return user._id;
@@ -44,10 +44,10 @@ router.post("/sellProduct", function (request, response) {
             productData.addProduct(request.body,userId)
             .then((product) => {
                 console.log("New Product Added!");
-                console.log(product);
-                console.log("##");
-                console.log(product.user);
-                console.log(product._id);
+                //console.log(product);
+                //console.log("##");
+                //console.log(product.user);
+                //console.log(product._id);
                 //response.redirect("/products/"+product._id);
                 response.redirect("/products/"+product._id);
                 //response.json({ success: true, message: product});
