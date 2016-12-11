@@ -17,3 +17,12 @@ td {
     flex: 1; 
     padding: 1em;
 }
+
+.removeButton button {
+color: #383838;
+text-decoration: none;
+}
+
+.updateProductOption {
+padding-top: 80px;
+}

@@ -86,7 +86,7 @@
     </div>
 
     {{#if currUser}}
-    <div>
+    <div class="updateProductOption">
         {{#if product }}
         <table style="width: 80%;">
             <tr>
@@ -97,8 +97,10 @@
                         <!--<button type="button" onclick="/products/removeProduct/"+{{product._id}}>Remove</button>-->
                     </form>
                 </td>
+                </tr>
+                <tr>
                 <td>
-                    <a href="/products/removeProduct/{{product._id}}" class="button">Remove</a>
+                    <a href="/products/removeProduct/{{product._id}}" class="removeButton"><button>Remove</button></a>
                 </td>
             </tr>
         </table>

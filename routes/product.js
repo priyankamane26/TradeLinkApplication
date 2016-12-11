@@ -118,7 +118,6 @@ router.post("/editProduct/", function (request, response) {
 });
 
 
-
 /*
 * Route for deleting product details
 */
