@@ -11,6 +11,7 @@ function validateSellForm()
             //console.log("Form submitted");
             var title = $("#title").val();
             var description  = $("#description").val();
+            var price  = $("#price").val();
             var condition = $("#condition").val();
             var purchasedYear = $("#purchasedYear").val();
             var productImage = $("#productImage").val();
@@ -27,6 +28,7 @@ function validateSellForm()
             //console.log(password);
             if (!title) throw "Must provide title.";
             if (!description) throw "Must provide description.";
+            if (!price) throw "Must provide price.";
             if (!condition) throw "Must provide product's condition.";
             if (!purchasedYear) throw "Must provide year of product purchase.";
             if (!status) throw "Must provide status.";

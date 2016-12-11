@@ -108,6 +108,7 @@ let exportedMethods = {
                     user:UserID,
                     title: requestBody.title,
                     description: requestBody.description,
+                    price:requestBody.price,
                     condition: requestBody.condition,
                     purchasedYear: requestBody.purchasedYear,
                     productImage: requestBody.image,
@@ -159,6 +160,10 @@ let exportedMethods = {
 
         if (updatedProduct.description) {
             updatedProdcutData.description = updatedProduct.description;
+        }
+
+        if (updatedProduct.price) {
+                    updatedProdcutData.price = updatedProduct.price;
         }
 
         if (updatedProduct.condition) {
