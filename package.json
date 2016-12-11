@@ -1,14 +1,14 @@
 {
-  "name": "tradelink",
+  "name": "TradeLink",
   "version": "1.0.0",
-  "description": "CS546 Final Prject - A Stevens’s internal product trading management system",
+  "description": "CS546 Final Project - A Stevens’ internal product trading management system",
   "main": "app.js",
   "scripts": {
     "seed":  "node ./tasks/seed.js",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Sanketh Batchireddy",
+  "author": "Sanketh Batchireddy, Cody Bruno, Yudong Cao, Priyanka Mane",
   "license": "MIT",
   "repository": {
     "type": "git",
