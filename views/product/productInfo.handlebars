@@ -6,7 +6,7 @@
                     <h3 style="color: #7CFC00;">Product</h3>
                 </tr>
                 <tr>
-                    <td><p hidden id="productId">{{ product.id }}</p></td>
+                    <td><p hidden id="productId">{{ product._id }}</p></td>
                 </tr>
                 <tr>
                     <td><h4>Title : </h4></td>
@@ -28,7 +28,7 @@
                     <td><h4>Image : </h4></td>
                     <td>
                         <h4>
-                            <img src="/{{product.productImage}}" alt="productpic"/>
+                            <img src="/{{product.productImage}}" alt="productpic" style="width: 200px; height: 200px"/>
 
                         </h4>
                     </td>
@@ -40,47 +40,70 @@
             {{/if}}
         </table>
 </div>
+
+ {{#if currUser}}		
+    <div>
+    {{#if product }}
+       <table style="width: 80%;">
+        <tr>
+            <td>
+                <form id="updateProductForm" method="POST" action="/products/editProduct/edit">
+                    <input type="hidden" name="updateProductID" id="updateProductID" value="{{product._id}}" />
+                    <button type="submit">Edit</button>
+                    <!--<button type="button" onclick="/products/removeProduct/"+{{product._id}}>Remove</button>-->
+                </form>
+                </td>
+            <td>
+                <a href="/products/removeProduct/{{product._id}}" class="button">Remove Product</a>
+            </td>
+        </tr>
+    </table> 
+    {{/if}}
+    </div>
+ {{else}}
 <div class="innerDiv">
     <table>
-         {{#if user }}
+         {{#if productUser }}
                 <tr>
                     <h3 style="color: #7CFC00;">Seller's Contact Information</h3>
                 </tr>
                 <tr>
                     <td><h4>Firstname : </h4></td>
-                    <td><h4><p id="firstName">{{ user.firstName}}</p></h4></td>
+                    <td><h4><p id="firstName">{{ productUser.firstName}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>Lastname : </h4></td>
-                    <td><h4><p id="lastName">{{ user.lastName}}</p></h4></td>
+                    <td><h4><p id="lastName">{{ productUser.lastName}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>Email : </h4></td>
-                    <td><h4><p id="email">{{ user.email}}</p></h4></td>
+                    <td><h4><p id="email">{{ productUser.email}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>Contact No : </h4></td>
-                    <td><h4><p id="phone">{{ user.phone}}</p></h4></td>
+                    <td><h4><p id="phone">{{ productUser.phoneNumber}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>Address : </h4></td>
-                    <td><h4><p id="address">{{ user.address}}</p></h4></td>
+                    <td><h4><p id="address">{{ productUser.address}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>City : </h4></td>
-                    <td><h4><p id="city">{{ user.city}}</p></h4></td>
+                    <td><h4><p id="city">{{ productUser.city}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>State : </h4></td>
-                    <td><h4><p id="state">{{ user.state}}</p></h4></td>
+                    <td><h4><p id="state">{{ productUser.state}}</p></h4></td>
                 </tr>
                 <tr>
                     <td><h4>Zip Code : </h4></td>
-                    <td><h4><p id="zipCode">{{ user.zipCode}}</p></h4></td>
+                    <td><h4><p id="zipCode">{{ productUser.zipcode}}</p></h4></td>
                 </tr>
             {{/if}}
         </table>
   </div>
+ {{/if}}
+
   </div>
     <a href="/myprofile">Back</a>
 
@@ -105,6 +128,12 @@
         flex: 1; 
         padding: 1em;
     }
-
+    a.button {
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        border-radius: 2px;
+        text-decoration: none;
+        color: initial;
+    }
 </style>
-

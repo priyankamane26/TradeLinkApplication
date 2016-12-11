@@ -1,0 +1,95 @@
+
+<div class="row">
+    <div class="col-sm-10"><br/>
+        <form id="updateProduct"  method="POST" action="/products/editProduct/">
+            <table class="tableBorder">
+                <tr>
+                    <div class="form-group hidden" id="error-container">
+                        <div class="alert alert-danger text-goes-here">
+                            {{ error }}
+                        </div>
+                    </div>
+                    {{#if error }}
+                        <div class="form-group" id="error-container">
+                            <div class="alert alert-danger text-goes-here">
+                                {{ error }}
+                            </div>
+                        </div>
+                    {{/if}}
+                </tr>
+            </table>
+            <table class="tableBorder">
+                <th>
+                    <h2>Edit Product's details</h2>
+                </th>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="hidden" name="productID" id="updateProductID" value="{{product._id}}" />
+                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{product.title}}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" value="{{product.description}}">
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="condition">Condition of the Product</label>
+                            <input type="text" class="form-control" id="condition" name="condition" placeholder="E.g. New or Used." value="{{product.condition}}">
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <label for="purchasedYear">Purchased in year</label>
+                            <input type="purchasedYear" class="form-control" id="purchasedYear" name="purchasedYear" placeholder="Enter the year product was purchased" value="{{product.purchasedYear}}">
+                        </div>
+                    </td>
+                </tr>
+                <!-- -->
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select style="color:black" class="form-control" id="status" name="status">
+                                <option value="unsold" selected>Unsold</option>
+                                <option value="sold">Sold</option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+
+<style>
+    table {
+        width: 100%;
+        border-collapse: separate;
+    }
+    .tableBorder {
+        border-spacing: 50px 0 !important;
+    }
+    td {
+        width: 300px;
+        padding: 10px 0;
+    }
+    th{
+        text-align: center;
+        color:#FFD700;
+    }
+</style>
