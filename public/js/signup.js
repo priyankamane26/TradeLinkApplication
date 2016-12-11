@@ -154,6 +154,7 @@ function validateUserUpdateForm()
             var zipCode = $("#zipCode").val();
             var gender;
             var securityQues = $('#securityQuestion :selected').text();
+            console.log(securityQues);
             var securityAns = $('#securityAnswer').val();
 
             var errorContainer = document.getElementById("error-container");
@@ -257,7 +258,7 @@ function validateUserUpdateForm()
                         city: city,
                         state: state,
                         zipCode: zipCode,
-                        security:securityQuestion,
+                        security:securityQues,
                         answer: securityAns
                     })
                 };
