@@ -1,25 +1,30 @@
-{{#if products}}
-<div class="outerDiv">
-    <div class="innerDiv">
-        <table>
-            {{#each products}}
-            <div class="row">
-                <h2><a href="/products/{{_id}}">{{title}}</a></h2>
-                <div class="col-xs-6">
-                    <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
-                </div>
-                <div class="col-xs-6">
-                    <!--<p>Title: {{title}}</p>-->
-                    <p>Description: {{description}}</p>
-
-                    <!--<span class="label label-info">{{status}}</span>-->
-                </div>
-            </div>
-
-            {{/each}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+      {{#if products}}
+         <table>
+        {{#each products}}
+          <tr>
+            <th>
+              <h1><a href="/products/{{_id}}">{{title}}</a></h1>
+              <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
+            </th>
+            <th>
+              <p>Description: {{description}}</p>
+              <p>Condition: {{condition}}</p>
+              <p>Price: ${{price}}</p>
+            </th>
+          </tr>
+        {{/each}}
         </table>
+      {{else}}
+        <h1>You currently have no products.</h1>
+        <h2><a href="/sell/sellProduct">Add a product here.</a></h2>
+      {{/if}}
     </div>
+    <div class="col-md-2"></div>
+  </div>
 </div>
-{{else}}
-<h1 style="padding-left: 80px">You currently have no products. <a href="/sell/sellProduct">Add a product here.</a></h1>
-{{/if}}
+
+<link rel="stylesheet" href="../public/css/myProducts.css">
