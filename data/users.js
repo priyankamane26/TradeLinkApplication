@@ -81,6 +81,7 @@ let exportedMethods = {
             });
         });
     },
+
     updateUser(password, email) {
         return users().then((usersCollection) => {
             let updateUser = {
@@ -122,14 +123,12 @@ let exportedMethods = {
 
     updateUserPic(requestBody) {
         return users().then((usersCollection) => {
-            console.log("UPDATE IMAGE");
             let updateUser = {
                 imagePath: requestBody.image
             }
             let updateCommand = {
                 $set: updateUser
             };
-            console.log(requestBody.userid);
             return usersCollection.updateOne({ _id: requestBody.userid }, updateCommand).then(() => {
                 return this.getUserByID(requestBody.userid);
             });

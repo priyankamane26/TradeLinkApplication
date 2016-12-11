@@ -100,8 +100,6 @@ app.post("/signup",upload.single('userPic'),function (req, res, next){
 });
 
 app.post("/updateUserProfilePic",upload.single('userPic'),function (req, res, next){
-    console.log("req.file");
-    console.log(req.file);
     if(req.file){
         var tmp_path = req.file.path;
         var imageId = uuid.v4();
@@ -112,14 +110,12 @@ app.post("/updateUserProfilePic",upload.single('userPic'),function (req, res, ne
         var dest = fs.createWriteStream(target_path);
         src.pipe(dest);
         src.on('end', function() {console.log("File Uploaded Successfully"); });
-        src.on('error', function(err) { res.json({error: true,message:err}); });
+        src.on('error', function(err) { res.json({error: true, message: err}); });
     }
     else {
-        console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         var target_path = 'public/images/defaultProfilePic.jpg';
         req.body.image = target_path;
     }
-    console.log(req.body.image);
     next();
 });
 

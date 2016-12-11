@@ -281,4 +281,3 @@ function validateUserUpdateForm()
 
     return returnresult;
 }
-

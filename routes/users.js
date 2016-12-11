@@ -119,12 +119,8 @@ router.post("/updateUser", function (request, response) {
 
 //Update user profile picture
 router.post("/updateUserProfilePic", function (request, response) {
-    console.log("request IMAGEEEEEEEEE");
-    console.log(request.body.image);
     userData.updateUserPic(request.body).then((user)=>{
-        console.log("===========");
         response.redirect("/myprofile");
-        //response.redirect("/myprofile");
     }).catch(() => {
         response.redirect("/myprofile");
     });
