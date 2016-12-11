@@ -1,41 +1,25 @@
 <div>
     <table style="width: 100%">
         <tr>
-            <td style="padding-left: 80px">
-                <h2 id = "helloLabel">Hello, {{user.firstName}}</h2>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding-left: 80px">
-                <input type="hidden" id="userid" name="userid" value="{{user._id}}">
-                <div class="innerDiv">
-                    <strong><h2><a href="/sell/sellProduct">Sell a product</a></h2></strong>
-                </div>
-                <div class="innerDiv">
-                    <strong><h2><a href="/browse">Browse products</a></h2></strong>
-                </div>
-                <div class="innerDiv">
-                    <strong><h2><a href="/products">My Products</a></h2></strong>
-                </div>
-                <div class="innerDiv">
-                    <strong><h2><a href="/updateProfile">Update Profile</a></h2></strong>
-                </div>
-            </td>
-            <td>
-                <img src="/{{user.imagePath}}" alt="userprofilepic" style="width: 100px; height: 100px"/>
-            </td>
+          <td style="padding-left: 80px">
+              <input type="hidden" id="userid" name="userid" value="{{user._id}}">
+              <div class="innerDiv">
+                  <strong><h2><a href="/sell/sellProduct">Sell a product</a></h2></strong>
+              </div>
+              <div class="innerDiv">
+                  <strong><h2><a href="/browse">Browse products</a></h2></strong>
+              </div>
+              <div class="innerDiv">
+                  <strong><h2><a href="/products">My Products</a></h2></strong>
+              </div>
+              <div class="innerDiv">
+                  <strong><h2><a href="/updateProfile">Update Profile</a></h2></strong>
+              </div>
+          </td>
+          <td>
+              <img src="/{{user.imagePath}}" alt="userprofilepic" style="width: 100px; height: 100px"/>
+          </td>
         </tr>
     </table>
 </div>
 
-<style>
-    .outerDiv {
-        display: flex;
-    }
-
-    .innerDiv {
-        flex: 1;
-        padding: 1em;
-        padding-left: 80px
-    }
-</style>
