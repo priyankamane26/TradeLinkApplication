@@ -180,7 +180,8 @@ let exportedMethods = {
         let updateCommand = {
             $set: updatedProdcutData
         };
-
+        console.log("======");
+        console.log(updatedProdcutData);
         return productsCollection.updateOne({ _id: id }, updateCommand).then(() => {
                 return this.getProductByID(id);
     }).catch((err)=>{

@@ -16,22 +16,36 @@ router.get("/:id", function (request, response) {
     data object link to user data object and get the user details.
     pass these details to productInfo page
     */
-    console.log(request.params.id);
+     if(request.session.passport && request.session.passport.user) {
+    //console.log(request.session.passport.user);
+    let currUserID=request.session.passport.user;
     productData.getProductByID(request.params.id).then((product)=>{
         let UserID = product.user;
-        console.log(UserID);
+        //console.log(UserID);
         let userInfo;
         userData.getUserByID(UserID).then((user)=>{
             userInfo=user;
-            console.log("userInfo");
-            console.log(userInfo);
-            response.render("product/productInfo", {partial:"userlogin-scripts", product: product, user: userInfo});
+
+
+            let currUser=false;
+            if(userInfo._id == currUserID){
+                currUser=true;
+                console.log(currUser);
+            }
+            response.render("product/productInfo", {partial:"product-scripts", product: product, productUser: userInfo, currUser: currUser});
+
         }).catch(() => {
          response.json({ error: true, message: "User not found" });
         });
+  
     }).catch(() => {
          response.json({ error: true, message: "Product not found" });
-    }); 
+   }); 
+     }
+      else {
+        response.redirect("/login");
+    }
+
 });
 
 router.get("/", function (request, response) {
@@ -46,8 +60,7 @@ router.get("/", function (request, response) {
             }).catch(() => {
                 response.json({ error: true, message:"user not found"});
             });
-            //console.log(userproducts);
-            //response.json(userproducts);
+            
             console.log(userInfo);
             console.log(userproducts);
 
@@ -62,5 +75,68 @@ router.get("/", function (request, response) {
     }
 
 });
+
+/*
+* Route for updating product details
+*/
+router.post("/editProduct/edit", function (request, response) {
+    console.log("Get Method for updating product details.")
+    console.log(request.body);
+    let productId=request.body.updateProductID;
+    if(request.session.passport && request.session.passport.user) {
+        productData.getProductByID(productId).then((product)=>{
+            console.log(product);
+            response.render("product/updateProduct", {partial:"userlogin-scripts", product: product});
+        }).catch((e)=>{
+            console.log(e);
+        });
+            
+     }
+      else {
+        response.redirect("/login");
+    }
+
+});
+
+/*
+* Route for updating product details
+*/
+router.post("/editProduct/", function (request, response) {
+    console.log("Put Method for updating product details.")
+    console.log(request.body)
+    if(request.session.passport && request.session.passport.user) {
+        productData.updateProduct(request.body.productID,request.body).then((product)=>{
+            //response.render("product/", {partial:"userlogin-scripts", product: product});
+             response.redirect("/products");  
+        })
+            
+     }
+      else {
+        response.redirect("/login");
+    }
+
+});
+
+
+
+/*
+* Route for deleting product details
+*/
+router.get("/removeProduct/:id", function (request, response) {
+    console.log("Get Method for deleting product.")
+    if(request.session.passport && request.session.passport.user) {
+    productData.removeProduct(request.params.id).then(()=>{
+         response.redirect("/products");      
+    }).catch(() => {
+         response.json({ error: true, message:"Product not found"});
+    }); 
+     }
+      else {
+        response.redirect("/login");
+    }
+
+});
+
+
 
 module.exports = router;
