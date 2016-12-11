@@ -20,8 +20,9 @@ const constructorMethod = (app) => {
     app.use("/sell", sellRoutes);
 
     app.use("*", (req, res) => {
-        let route = path.resolve(`static/errorPage.html`);
-        res.status(404).sendFile(route);
+        // let route = path.resolve(`static/errorPage.html`);
+        // res.status(404).sendFile(route);
+        res.render("errorPage",{user: req.user,partial:"mainscreen-scripts"});
     })
 };
 
