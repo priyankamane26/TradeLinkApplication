@@ -174,8 +174,8 @@ let exportedMethods = {
             updatedProdcutData.purchasedYear = updatedProduct.purchasedYear;
         }
 
-        if (updatedProduct.productImage) {
-            updatedProdcutData.productImage = updatedProduct.productImage;
+        if (updatedProduct.image) {
+            updatedProdcutData.productImage = updatedProduct.image;
         }
 
         if (updatedProduct.status) {

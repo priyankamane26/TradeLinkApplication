@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="col-sm-10"><br/>
-        <form id="updateProduct" onsubmit="return validateUpdateProductForm()"  method="POST" action="/products/editProduct/">
+        <form id="updateProduct" onsubmit="return validateUpdateProductForm()"  method="POST" action="/products/editProduct/" enctype="multipart/form-data">
             <table class="tableBorder">
                 <tr>
                     <div class="form-group hidden" id="error-container">
@@ -67,6 +67,15 @@
                         <div class="form-group">
                             <label for="price">Price $</label>
                             <input type="number" class="form-control" id="price" name="price" placeholder="Eg. $100" value="{{product.price}}">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group">
+                            <label for="productImage">Product images</label>
+                            <input type="file" class="form-control" id="productImage" name="productImage" value="{{product.productImage}}">
+                            <img style="height:50px;width:50px;float:left; display: none;" id="imageHome" src="#" alt="productimage"/>
                         </div>
                     </td>
                 </tr>
