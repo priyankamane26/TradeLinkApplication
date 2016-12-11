@@ -1,7 +1,7 @@
 
 <div class="row">
     <div class="col-sm-10"><br/>
-        <form id="updateProduct"  method="POST" action="/products/editProduct/">
+        <form id="updateProduct" onsubmit="return validateUpdateProductForm()"  method="POST" action="/products/editProduct/">
             <table class="tableBorder">
                 <tr>
                     <div class="form-group hidden" id="error-container">

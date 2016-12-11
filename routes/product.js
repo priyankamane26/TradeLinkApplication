@@ -86,7 +86,7 @@ router.post("/editProduct/edit", function (request, response) {
     if(request.session.passport && request.session.passport.user) {
         productData.getProductByID(productId).then((product)=>{
             console.log(product);
-            response.render("product/updateProduct", {partial:"userlogin-scripts", product: product});
+            response.render("product/updateProduct", {partial:"sell-scripts", product: product, user: request.user});
         }).catch((e)=>{
             console.log(e);
         });
