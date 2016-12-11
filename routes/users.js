@@ -19,7 +19,7 @@ router.get("/", function (request, response) {
         response.redirect("/myprofile");
     }
     else
-        response.render("mainHomeScreen", {partial:"home-scripts"});
+        response.redirect("/login");
 });
 
 router.get("/successfulSignup", function(request, response) {
