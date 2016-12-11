@@ -17,7 +17,7 @@ router.get("/:id", function (request, response) {
     pass these details to productInfo page
     */
      if(request.session.passport && request.session.passport.user) {
-    //console.log(request.session.passport.user);
+    //console.log(request);
     let currUserID=request.session.passport.user;
     productData.getProductByID(request.params.id).then((product)=>{
         let UserID = product.user;
@@ -32,7 +32,7 @@ router.get("/:id", function (request, response) {
                 currUser=true;
                 console.log(currUser);
             }
-            response.render("product/productInfo", {partial:"product-scripts", product: product, productUser: userInfo, currUser: currUser});
+            response.render("product/productInfo", {partial:"product-scripts", product: product, productUser: userInfo, currUser: currUser, user: request.user});
 
         }).catch(() => {
          response.json({ error: true, message: "User not found" });
