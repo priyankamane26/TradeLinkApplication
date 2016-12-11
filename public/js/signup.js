@@ -115,7 +115,7 @@ function validateSignupForm()
                 throw "Verification failed. Please enter the correct code.";
             }
             if (!securityAns) {
-                throw "security Answer required.";
+                throw "Security answer required.";
             }
             returnresult = true;
         }catch (e) {
@@ -238,7 +238,7 @@ function validateUserUpdateForm()
                 throw "Password confirmation failed.";
             }
             if (!securityAns) {
-                throw "security Answer required.";
+                throw "Security answer required.";
             }
             var securityQuestion ="";
             if (securityQues == '1') securityQuestion ="City you were born in?";
