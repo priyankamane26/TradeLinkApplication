@@ -22,6 +22,7 @@ function validateUserLoginForm()
             var message = typeof e === "string" ? e : e.message;
             errorTextElement.textContent = e;
             errorContainer.classList.remove("hidden");
+            $("#userCheck").hide();
             returnresult = false;
         }
     });
