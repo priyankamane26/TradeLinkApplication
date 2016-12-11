@@ -51,7 +51,7 @@ function validateSignupForm()
             $("#passwordValiderror").empty();
             if (!firstName) {
                 errorCheck = true;
-                document.getElementById('fnameerror').innerHTML="*Please enter a firstName*";
+                document.getElementById('fnameerror').innerHTML="*Please provide the firstName*";
             }
             if (!lastName) {
                 errorCheck = true;
@@ -177,7 +177,7 @@ function validateUserUpdateForm()
 
             if (!firstName) {
                 errorCheck = true;
-                document.getElementById('fnameerror').innerHTML="*Please enter a firstName*";
+                document.getElementById('fnameerror').innerHTML="*Please provide the firstName*";
             }
             if (!lastName) {
                 errorCheck = true;

@@ -5,6 +5,7 @@
 function validateSecurity()
 {
     var returnresult = false;
+    var passwordValidation = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
     jQuery(function($) {
         try {
             var userSecurityAnswer = $("#answer1").val();
@@ -24,6 +25,9 @@ function validateSecurity()
             }
             else if(givenAnswer != userSecurityAnswer){
                 throw "Security Answer doesn't match.";
+            }
+            else if((givenAnswer == userSecurityAnswer) && (newpassword && !newpassword.match(passwordValidation))) {
+                throw "Please provide a Password containing at least 8 characters, 1 number, 1 upper and 1 lowercase.";
             }
             else if((givenAnswer == userSecurityAnswer) && (newpassword != cnfnewpassword)) {
                 throw "Passwords do not match.";
