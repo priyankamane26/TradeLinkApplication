@@ -36,7 +36,8 @@ dbConnection().then(db => {
           title: "Gold",
           description: "It's just gold.",
           condition: "Shiny",
-          purchasedYear: "1776",
+          purchasedYear: 1996,
+          price: 650,
           image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
@@ -48,7 +49,8 @@ dbConnection().then(db => {
           title: "Concordia",
           description: "Awesome game.",
           condition: "New",
-          purchasedYear: "2013",
+          purchasedYear: 2013,
+          price: 1125,
           image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
@@ -60,7 +62,8 @@ dbConnection().then(db => {
           title: "Koala toy",
           description: "A round koala.",
           condition: "Slightly used",
-          purchasedYear: "2016",
+          purchasedYear: 2016,
+          price: 5000,
           image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
@@ -91,7 +94,8 @@ dbConnection().then(db => {
           title: "Rare jade panda",
           description: "It's a rare panda!!",
           condition: "Like new",
-          purchasedYear: "2009",
+          purchasedYear: 2009,
+          price: 100,
           image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
@@ -103,7 +107,8 @@ dbConnection().then(db => {
           title: "Wits and Wagers",
           description: "Betting game for all ages!",
           condition: "Like new",
-          purchasedYear: "2008",
+           purchasedYear: 2008,
+           price: 1450,
           image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
@@ -115,7 +120,8 @@ dbConnection().then(db => {
           title: "Galaxy Note 7",
           description: "This one doesn't explode, great condition!",
           condition: "Unexploded",
-          purchasedYear: "2015",
+            purchasedYear: 2015,
+            price: 2500,
           image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
