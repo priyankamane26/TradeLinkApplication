@@ -236,6 +236,9 @@ function validateUserUpdateForm()
             if (password != cnfpassword) {
                 throw "Password confirmation failed.";
             }
+            if (!securityAns) {
+                throw "security Answer required.";
+            }
             var securityQuestion ="";
             if (securityQues == '1') securityQuestion ="City you were born in?";
             else securityQuestion = "Mother's maiden name?";
