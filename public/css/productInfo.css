@@ -1,0 +1,19 @@
+table{
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 50px 0;
+}
+
+td {
+    text-align: left;
+    width: 300px;
+    padding: 10px 0;
+}
+.outerDiv {
+    display: flex; 
+}
+
+.innerDiv {
+    flex: 1; 
+    padding: 1em;
+}
