@@ -37,7 +37,7 @@ dbConnection().then(db => {
           description: "It's just gold.",
           condition: "Shiny",
           purchasedYear: "1776",
-          image: "public/images/defaultProfilePic.jpg",
+          image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
         return products.addProduct(requestBody, steven["_id"]);
@@ -49,7 +49,7 @@ dbConnection().then(db => {
           description: "Awesome game.",
           condition: "New",
           purchasedYear: "2013",
-          image: "public/images/defaultProfilePic.jpg",
+          image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
         return products.addProduct(requestBody, goldProduct["user"]);
@@ -61,7 +61,7 @@ dbConnection().then(db => {
           description: "A round koala.",
           condition: "Slightly used",
           purchasedYear: "2016",
-          image: "public/images/defaultProfilePic.jpg",
+          image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
         return products.addProduct(requestBody, concordiaProduct["user"]);
@@ -92,7 +92,7 @@ dbConnection().then(db => {
           description: "It's a rare panda!!",
           condition: "Like new",
           purchasedYear: "2009",
-          image: "public/images/defaultProfilePic.jpg",
+          image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
         return products.addProduct(requestBody, stefan["_id"]);
@@ -104,7 +104,7 @@ dbConnection().then(db => {
           description: "Betting game for all ages!",
           condition: "Like new",
           purchasedYear: "2008",
-          image: "public/images/defaultProfilePic.jpg",
+          image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
         return products.addProduct(requestBody, jadePandaProduct["user"]);
@@ -116,7 +116,7 @@ dbConnection().then(db => {
           description: "This one doesn't explode, great condition!",
           condition: "Unexploded",
           purchasedYear: "2015",
-          image: "public/images/defaultProfilePic.jpg",
+          image: "public/images/defaultProductPic.jpg",
           status: "Unsold"
         }
         return products.addProduct(requestBody, wagerToy["user"]);

@@ -7,10 +7,8 @@
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
             crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
-          crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/public/css/bootstrap.css">
+    <script src="/public/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <!--    <link rel="stylesheet" href="/public/css/style1.css">-->
     <script src="/public/js/tota11y.js"></script>
@@ -19,7 +17,7 @@
 
 <body>
 <div>
-    <nav class="class=navbar navbar-default" role="navigation" style="margin-bottom: 20px">
+    <nav class="class=navbar navbar-light" style="background-color: #a32638" role="navigation" style="margin-bottom: 20px">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">TradeLink</a>
@@ -37,7 +35,7 @@
                                 <li><a href="/products">My Products</a></li>
                                 <li><a href="/updateProfile">Update Profile</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="/logout">Sign out</a></li>
+                                <li><a href="/logout">Logout</a></li>
                             </ul>
                         </li>
                     {{else}}
@@ -53,9 +51,7 @@
 
     <main class="container" >
         <div class="row" >
-            <div class = "jumbotron">
-                {{{body}}}
-            </div>
+          {{{body}}}
         </div>
     </main>
 
