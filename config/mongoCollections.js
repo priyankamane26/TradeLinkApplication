@@ -1,7 +1,6 @@
 const dbConnection = require("./mongoConnection");
 
 /* This will allow you to have one reference to each collection per app */
-/* Feel free to copy and paste this this */
 let getCollectionFn = (collection) => {
     let _col = undefined;
 
@@ -10,8 +9,7 @@ let getCollectionFn = (collection) => {
             _col = dbConnection().then(db => {
                 db1 = db.collection(collection);
                 if(collection == "products") {
-                    console.log("============products: ");
-                    db1.createIndex({title: "text", year: "text"})
+                    db1.createIndex({title: "text", year: "text", price: "text", description: "text"})
                 }
                 return db1;
                 //return db.collection(collection);

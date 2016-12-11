@@ -61,8 +61,8 @@ router.get("/", function (request, response) {
                 response.json({ error: true, message:"user not found"});
             });
             
-            console.log(userInfo);
-            console.log(userproducts);
+            //console.log(userInfo);
+            //console.log(userproducts);
 
 
         }).catch(() => {
@@ -81,11 +81,11 @@ router.get("/", function (request, response) {
 */
 router.post("/editProduct/edit", function (request, response) {
     console.log("Get Method for updating product details.")
-    console.log(request.body);
+    //console.log(request.body);
     let productId=request.body.updateProductID;
     if(request.session.passport && request.session.passport.user) {
         productData.getProductByID(productId).then((product)=>{
-            console.log(product);
+            //console.log(product);
             response.render("product/updateProduct", {partial:"sell-scripts", product: product, user: request.user});
         }).catch((e)=>{
             console.log(e);
@@ -107,9 +107,9 @@ router.post("/editProduct/", function (request, response) {
     if(request.session.passport && request.session.passport.user) {
         productData.updateProduct(request.body.productID,request.body).then((product)=>{
             //response.render("product/", {partial:"userlogin-scripts", product: product});
-             response.redirect("/products");  
+             response.redirect("/products");
         })
-            
+
      }
       else {
         response.redirect("/login");

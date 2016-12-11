@@ -38,7 +38,7 @@ let exportedMethods = {
             question = "City you were born in?";
         }
         return users().then((usersCollection) => {
-            console.log(requestBody.image);
+            //console.log(requestBody.image);
             let newUser = {
                 _id: uuid.v4(),
                 email: requestBody.email,
@@ -72,7 +72,7 @@ let exportedMethods = {
     getUserByEmailPassport(email, cb) {
         return users().then((usersCollection) => {
             return usersCollection.findOne({ email: email }).then((user) => {
-                console.log("sadsjdks");
+                //console.log("sadsjdks");
                 if (!user) return cb(null, null);;
                 return cb(null, user);;
             });
@@ -106,7 +106,7 @@ let exportedMethods = {
 
     updateAllUserDetails(requestBody) {
         return users().then((usersCollection) => {
-            console.log(requestBody);
+            //console.log(requestBody);
             let updateUser = {
                 password: bcrypt.hashSync(requestBody.password),
                 firstName: requestBody.firstName,
@@ -120,12 +120,12 @@ let exportedMethods = {
                 security: requestBody.security,
                 answer: requestBody.answer
             }
-            console.log("!!!!!!!!!!!!");
-            console.log(updateUser);
+            //console.log("!!!!!!!!!!!!");
+            //console.log(updateUser);
             let updateCommand = {
                 $set: updateUser
             };
-            console.log(requestBody.email);
+            //console.log(requestBody.email);
             return usersCollection.updateOne({ email: requestBody.email }, updateCommand).then(() => {
                 return this.getUserByEmail(requestBody.email);
             });
