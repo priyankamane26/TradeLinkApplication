@@ -6,15 +6,16 @@
          <table>
         {{#each products}}
           <tr>
-            <th>
+            <td>
               <h1><a href="/products/{{_id}}">{{title}}</a></h1>
               <img src="/{{productImage}}" class="img-rounded" width="150" height="110" alt="product" />
-            </th>
-            <th>
+            </td>
+            <!--<td style="padding-left: 30px"></td>-->
+            <td>
               <p>Description: {{description}}</p>
               <p>Condition: {{condition}}</p>
               <p>Price: ${{price}}</p>
-            </th>
+            </td>
           </tr>
         {{/each}}
         </table>

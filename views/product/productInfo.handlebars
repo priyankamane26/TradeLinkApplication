@@ -9,72 +9,58 @@
             </tr>
             <tr>
                 <td>
-                    <h4>Title : </h4>
+                    Title : 
                 </td>
                 <td>
-                    <h4>
-                        <p id="title">{{ product.title }}</p>
-                    </h4>
+                    <p id="title">{{ product.title }}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Condition: </h4>
+                    Condition:
                 </td>
                 <td>
-                    <h4>
-                        <p id="condition">{{product.condition}}</p>
-                    </h4>
+                    <p id="condition">{{product.condition}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Purchased Year: </h4>
+                    Purchased Year:
                 </td>
                 <td>
-                    <h4>
-                        <p id="purchasedYear">{{ product.purchasedYear }}</p>
-                    </h4>
+                    <p id="purchasedYear">{{ product.purchasedYear }}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Description: </h4>
+                    Description: 
                 </td>
                 <td>
-                    <h4>
-                        <p id="description">{{ product.description}}</p>
-                    </h4>
+                    <p id="description">{{ product.description}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Price: </h4>
+                    Price: 
                 </td>
                 <td>
-                    <h4>
-                        <p id="price">${{ product.price}}</p>
-                    </h4>
+                    <p id="price">${{ product.price}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Status: </h4>
+                    Status:
                 </td>
                 <td>
-                    <h4>
-                        <p id="status">{{ product.status}}</p>
-                    </h4>
+                    <p id="status">{{ product.status}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Image: </h4>
+                    Image:
                 </td>
                 <td>
-                    <h4>
-                        <img src="/{{product.productImage}}" class="img-rounded" width="80%" height="80%" alt="productpic" />
-                    </h4>
+                    <img src="/{{product.productImage}}" class="img-rounded" style="width=80% height=80%;" alt="productpic" />
                 </td>
             </tr>
             {{/if}}
@@ -108,86 +94,70 @@
         <table>
             {{#if productUser }}
             <tr>
-                <h3 style="color: #727272;">Seller's Contact Information</h3>
+                <p style="color: #727272;">Seller's Contact Information</p>
             </tr>
             <tr>
                 <td>
-                    <h4>First Name : </h4>
+                    First Name :
                 </td>
                 <td>
-                    <h4>
-                        <p id="firstName">{{ productUser.firstName}}</p>
-                    </h4>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <h4>Last Name : </h4>
-                </td>
-                <td>
-                    <h4>
-                        <p id="lastName">{{ productUser.lastName}}</p>
-                    </h4>
+                    <p id="firstName">{{ productUser.firstName}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Email : </h4>
+                    Last Name :
                 </td>
                 <td>
-                    <h4>
-                        <p id="email">{{ productUser.email}}</p>
-                    </h4>
+                    <p id="lastName">{{ productUser.lastName}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Contact No : </h4>
+                    Email :
                 </td>
                 <td>
-                    <h4>
-                        <p id="phone">{{ productUser.phoneNumber}}</p>
-                    </h4>
+                    <p id="email">{{ productUser.email}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Address : </h4>
+                    Contact No :
                 </td>
                 <td>
-                    <h4>
-                        <p id="address">{{ productUser.address}}</p>
-                    </h4>
+                    <p id="phone">{{ productUser.phoneNumber}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>City : </h4>
+                    Address :
                 </td>
                 <td>
-                    <h4>
-                        <p id="city">{{ productUser.city}}</p>
-                    </h4>
+                    <p id="address">{{ productUser.address}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>State : </h4>
+                    City :
                 </td>
                 <td>
-                    <h4>
-                        <p id="state">{{ productUser.state}}</p>
-                    </h4>
+                    <p id="city">{{ productUser.city}}</p>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <h4>Zip Code : </h4>
+                    State :
                 </td>
                 <td>
-                    <h4>
-                        <p id="zipCode">{{ productUser.zipCode}}</p>
-                    </h4>
+                    <p id="state">{{ productUser.state}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Zip Code :
+                </td>
+                <td>
+                    <p id="zipCode">{{ productUser.zipCode}}</p>
                 </td>
             </tr>
             {{/if}}
