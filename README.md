@@ -1,5 +1,7 @@
 # TradeLink
 
+![TradeLink Logo](/public/images/tradeLinkLogo.jpg)
+
 TradeLink is a web application that allows Stevens members to buy and sell
 items through an exclusive marketplace with other Stevens members.
 
