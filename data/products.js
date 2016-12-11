@@ -117,6 +117,10 @@ let exportedMethods = {
     });
     },
 
+    /*
+     Parameters: id, updatedProduct
+     return: updated product.    
+    */
     updateProduct(id, updatedProduct) {
         if (!id || !updatedProduct || id == undefined || updatedProduct == undefined)
         {
