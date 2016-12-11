@@ -4,6 +4,9 @@ body {
     font-size: 15pt;
 }
 
+.navbar-default .navbar-brand {
+    color: #ffffff;
+}
 
 main {
     max-width: 75%;
@@ -48,10 +51,6 @@ p {
     line-height: 2;
 }*/
 
-.post {
-    width: 75%;
-    border-bottom: 1px dashed #333;
-}
 
 .rightMain {
     margin-top: 10%;
