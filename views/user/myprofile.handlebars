@@ -1,4 +1,5 @@
 <div>
+
     <table style="width: 100%">
         <tr>
           <td style="padding-left: 80px">
@@ -18,6 +19,15 @@
           </td>
           <td>
               <img src="/{{user.imagePath}}" alt="userprofilepic" style="width: 100px; height: 100px"/>
+                  <form id="updateProfilePicID" method="post" action="/updateUserProfilePic" enctype="multipart/form-data" >
+                      <div class="form-group" >
+                          <label for="userPic">Profile Picture</label>
+                          <input type="file" class="form-control" id="userPic" name="userPic" value="{{userPic}}">
+                          <input type="hidden" id="userid" name="userid" value="{{user._id}}">
+                          <img style="display: none;height:50px;width:50px;float:left;" id="imageHome" src="#" alt="your image"/>
+                      </div>
+                      <button type="submit" class="btn btn-default">Update</button>
+                  </form>
           </td>
         </tr>
     </table>
