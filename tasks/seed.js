@@ -70,7 +70,7 @@ dbConnection().then(db => {
         requestBody = {
           _id: uuid.v4(),
           email: "stefan@stevens.edu",
-          password: "BoraBora",
+          password: "BoraBora2013",
           firstName: "Stefan",
           lastName: "Feld",
           gender: "Male",
