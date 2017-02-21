@@ -1,5 +1,6 @@
 /**
  * Created by sanketh on 11/26/2016.
+ * Updated by Priyanka on 12/11/2016, modification for /updateUserProfilePic
  */
 const bcrypt = require("bcrypt-nodejs");
 const bodyParser = require("body-parser");

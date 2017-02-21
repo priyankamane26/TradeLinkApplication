@@ -115,7 +115,7 @@ function validateSignupForm()
                 throw "Verification failed. Please enter the correct code.";
             }
             if (!securityAns) {
-                throw "security Answer required.";
+                throw "Security answer required.";
             }
             returnresult = true;
         }catch (e) {
@@ -154,6 +154,7 @@ function validateUserUpdateForm()
             var zipCode = $("#zipCode").val();
             var gender;
             var securityQues = $('#securityQuestion :selected').text();
+            console.log(securityQues);
             var securityAns = $('#securityAnswer').val();
 
             var errorContainer = document.getElementById("error-container");
@@ -236,6 +237,9 @@ function validateUserUpdateForm()
             if (password != cnfpassword) {
                 throw "Password confirmation failed.";
             }
+            if (!securityAns) {
+                throw "Security answer required.";
+            }
             var securityQuestion ="";
             if (securityQues == '1') securityQuestion ="City you were born in?";
             else securityQuestion = "Mother's maiden name?";
@@ -254,7 +258,7 @@ function validateUserUpdateForm()
                         city: city,
                         state: state,
                         zipCode: zipCode,
-                        security:securityQuestion,
+                        security:securityQues,
                         answer: securityAns
                     })
                 };

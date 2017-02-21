@@ -2,8 +2,8 @@
 <div class="row">
     <div class="col-sm-10"><br/>
         <form id="signupform" onsubmit="parent.scrollTo(0, 0);return validateSignupForm()" method="post" action="/signup" enctype="multipart/form-data">
-            <table class="tableBorder">
-                <tr>
+            <!--<table class="tableBorder">
+                <tr>-->
                     <div class="form-group hidden" id="error-container" style="padding-left: 50px;padding-right: 50px;">
                         <div class="alert alert-danger text-goes-here">
                             {{ error }}
@@ -36,8 +36,8 @@
                             </div>
                         </div>
                     {{/if}}
-                </tr>
-            </table>
+                <!--</tr>
+            </table>-->
             <table class="tableBorder">
                 <tr>
                     <td>
@@ -63,7 +63,7 @@
                     </td>
                     <td>
                         <div class="form-group">
-                            <label for="gender">Gender</label>
+                            <label>Gender</label>
                             <label class="radio-inline signup-form-labels">
                                 <input type="radio" id="mgender" name="gender" value="Male" checked> Male
                             </label>
@@ -93,7 +93,7 @@
                     <td>
                         <div class="form-group">
                             <label for="userPic">Profile Picture</label>
-                            <input type="file" class="form-control" id="userPic" name="userPic" value="{{userPic}}">
+                            <input type="file" class="form-control" id="userPic" name="userPic">
                             <img style="display: none;height:50px;width:50px;float:left;" id="imageHome" src="#" alt="your image"/>
                         </div>
                     </td>
@@ -108,7 +108,7 @@
                     <td>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="textarea" class="form-control" id="address" name="address" placeholder="E.g. 1 Castle point on hudson" value="{{address}}">
+                            <input type="text" class="form-control" id="address" name="address" placeholder="E.g. 1 Castle point on hudson" value="{{address}}">
                         </div>
                     </td>
                     <td>
@@ -149,7 +149,7 @@
                 <tr>
                     <td>
                         <div class="form-group">
-                            <label for="status">Security Question</label>
+                            <label>Security Question</label>
                             <select style="color:black" class="form-control" id="securityQuestion" name="securityQuestion">
                                 <option value="1" selected>City you were born in?</option>
                                 <option value="2">Mother's maiden name?</option>

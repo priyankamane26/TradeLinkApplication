@@ -1,5 +1,6 @@
 /**
  * Created by sanketh on 12/3/2016.
+ * Updated by Priyanka on 12/9/2016
  */
 function validateSellForm()
 {

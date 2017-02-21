@@ -1,7 +1,12 @@
 # TradeLink
 
+![TradeLink Logo](/public/images/tradeLinkLogo.jpg)
+
 TradeLink is a web application that allows Stevens members to buy and sell
 items through an exclusive marketplace with other Stevens members.
+
+# Github 
+https://github.com/cydjohn/webProgramming/
 
 # Code structure
 
@@ -15,6 +20,12 @@ The primary directories are:
 - static: Error page (404).
 - tasks: Seed script used to populate database.
 - views: Handlebars templates and HTML.
+
+# Install packages
+
+```
+npm install
+```
 
 # Seeding the database
 
